@@ -38,6 +38,8 @@ dependencies:
   google_fonts: ^6.2.1
   hover_animation: ^0.0.1
   flutter_svg: ^2.0.10+1
+  visibility_detector: ^0.4.0+2
+  hovering: ^1.0.4
 
 dev_dependencies:
   flutter_test:
