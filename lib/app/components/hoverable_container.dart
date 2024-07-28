@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class HoverableContainer extends StatefulWidget {
   final Widget child;
+  final EdgeInsetsGeometry? padding;
 
-  HoverableContainer({required this.child});
+  const HoverableContainer({
+    super.key,
+    required this.child,
+    this.padding,
+  });
 
   @override
   _HoverableContainerState createState() => _HoverableContainerState();
@@ -25,13 +30,17 @@ class _HoverableContainerState extends State<HoverableContainer> {
       onEnter: (_) => _onHover(true),
       onExit: (_) => _onHover(false),
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
+        padding: widget.padding,
         transform: _isHovered ? hoverTransform : Matrix4.identity(),
         decoration: BoxDecoration(
           color: _isHovered ? Colors.purple[700] : Colors.transparent,
           borderRadius: BorderRadius.circular(10),
           boxShadow: _isHovered
-              ? [BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 2)]
+              ? [
+                  const BoxShadow(
+                      color: Colors.black26, blurRadius: 10, spreadRadius: 2)
+                ]
               : [],
         ),
         child: widget.child,

@@ -1,11 +1,13 @@
-import 'package:fivr_landing_page/app/views/devices/desktop_view.dart';
-import 'package:fivr_landing_page/app/views/devices/mobile_view.dart';
-import 'package:fivr_landing_page/app/views/devices/tablet_view.dart';
-import 'package:fivr_landing_page/app/views/responsive/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'app/views/devices/desktop_view.dart';
+import 'app/views/devices/mobile_view.dart';
+import 'app/views/devices/tablet_view.dart';
+import 'app/views/responsive/responsive.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
         tablet: TabletView(),
         desktop: DesktopView(),
       ),
+      // home: const Webpage(),
     );
   }
 }
