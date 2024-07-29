@@ -1,3 +1,4 @@
+import 'package:fivr_landing_page/app/application/general_provider.dart';
 import 'package:fivr_landing_page/app/components/focus_widget.dart';
 import 'package:fivr_landing_page/app/components/our_team_widget.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,8 @@ class _DesktopViewState extends ConsumerState<DesktopView>
     super.initState();
 
     _scrollController = ScrollController();
+    Future.microtask(
+        () => ref.read(generalProvider.notifier).update((state) => false));
 
     // Initialize the list with placeholders
   }
@@ -47,6 +50,7 @@ class _DesktopViewState extends ConsumerState<DesktopView>
     final size = MediaQuery.sizeOf(context);
     final scrollController = useScrollController();
     return Scaffold(
+      // backgroundColor: AppColors.vibrantOrange,
       body: Scrollbar(
         controller: scrollController,
         child: SingleChildScrollView(

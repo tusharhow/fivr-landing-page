@@ -29,7 +29,7 @@ class AnimatedBox extends HookConsumerWidget {
       key: ValueKey(detectedKey),
       onVisibilityChanged: (visibilityInfo) {
         log("${visibilityInfo.key} ${visibilityInfo.visibleFraction} $isVisible");
-        if (visibilityInfo.visibleFraction > 0) {
+        if (visibilityInfo.visibleFraction > 0.1) {
           controller.forward();
 
           isVisible.value = true;

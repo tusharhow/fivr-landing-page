@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class Responsive extends StatelessWidget {
@@ -27,6 +29,8 @@ class Responsive extends StatelessWidget {
     return LayoutBuilder(
       // If our width is more than 1100 then we consider it a desktop
       builder: (context, constraints) {
+        log("$constraints ${constraints.maxWidth} ${constraints.minWidth}",
+            name: 'Constraint');
         if (constraints.maxWidth >= 1100) {
           return desktop;
         }

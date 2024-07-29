@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class HoverableContainer extends StatefulWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
+  final Color? hoverColor;
 
   const HoverableContainer({
     super.key,
     required this.child,
     this.padding,
+    required this.hoverColor,
   });
 
   @override
@@ -34,7 +36,7 @@ class _HoverableContainerState extends State<HoverableContainer> {
         padding: widget.padding,
         transform: _isHovered ? hoverTransform : Matrix4.identity(),
         decoration: BoxDecoration(
-          color: _isHovered ? Colors.purple[700] : Colors.transparent,
+          color: _isHovered ? widget.hoverColor : Colors.transparent,
           borderRadius: BorderRadius.circular(10),
           boxShadow: _isHovered
               ? [

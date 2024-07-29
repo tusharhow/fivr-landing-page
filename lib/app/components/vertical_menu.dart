@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/core.dart';
+
 class VerticalTextMenu extends StatelessWidget {
   const VerticalTextMenu({super.key});
 
@@ -16,7 +18,7 @@ class VerticalTextMenu extends StatelessWidget {
       color: Colors.white60,
     );
     return Container(
-      color: Colors.black,
+      color: AppColors.granita, // Colors.black,
       width: 212,
       height: double.infinity,
       // padding: const EdgeInsets.symmetric(vertical: 116),
@@ -58,12 +60,12 @@ class VerticalTextMenu extends StatelessWidget {
             ),
           ]
               .animate(
-                  delay: (preTime + 2200).milliseconds,
+                  delay: (preTime + 800).milliseconds,
                   interval: 200.milliseconds)
               .fadeIn()
               .scaleY(alignment: Alignment.topCenter),
         ),
       ),
-    ).animate(delay: (preTime + 1800).milliseconds).slideX(begin: 1, end: 0);
+    ).animate(delay: (preTime + 600).milliseconds).slideX(begin: 1, end: 0);
   }
 }

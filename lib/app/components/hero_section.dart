@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hover_animation/hover_animation.dart';
 
+import '../../core/core.dart';
 import 'vertical_menu.dart';
 
 const slideTime = 1000;
@@ -12,14 +15,14 @@ const scaleTime = 300;
 /// 1000 + 300 = 1300 milliseconds
 const preTime = 1000;
 
-class HeroSection extends StatefulWidget {
+class HeroSection extends StatefulHookConsumerWidget {
   const HeroSection({super.key});
 
   @override
-  State<HeroSection> createState() => _HeroSectionState();
+  ConsumerState<HeroSection> createState() => _HeroSectionState();
 }
 
-class _HeroSectionState extends State<HeroSection>
+class _HeroSectionState extends ConsumerState<HeroSection>
     with TickerProviderStateMixin {
   late final AnimationController slideAnimationController;
   late final Animation<Offset> slideAnimation;
@@ -130,30 +133,35 @@ class _HeroSectionState extends State<HeroSection>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    return AspectRatio(
-      aspectRatio: 1920 / 961,
-      child: Row(
-        key: globalKey,
-        children: [
-          Expanded(
-            flex: 10,
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xff2051FF),
-                    Color(0xffCDD4F0),
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
+    final isComplete = useState<bool>(false);
+    return LayoutBuilder(builder: (context, constraints) {
+      return Container(
+        constraints: BoxConstraints(
+          maxHeight:
+              constraints.maxWidth <= 1536 ? size.height : size.height * .9,
+          minHeight: size.height * .9,
+        ),
+        child: Row(
+          key: globalKey,
+          children: [
+            Expanded(
+              flex: 10,
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.purpleCorallites, //  Color(0xff2051FF),
+                      AppColors.purpleHeather, // Color(0xffCDD4F0),
+                    ],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
                 ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: size.width * 0.045,
                       ),
@@ -165,41 +173,38 @@ class _HeroSectionState extends State<HeroSection>
                         ),
                       ),
                     ),
-                  ),
-                  // SizedBox(height: size.height * 0.03),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: size.width * 0.04),
-                      child: Text.rich(
-                        strutStyle: StrutStyle(
-                            fontSize: size.width * 0.05, height: 0.5),
-                        TextSpan(
-                          text: 'INNOVATING FOR A\n',
-                          style: GoogleFonts.bebasNeue(
-                              fontSize: size.width * 0.04, color: Colors.white),
-                          children: [
-                            TextSpan(
-                              text: 'SMARTER ',
-                              style: GoogleFonts.bebasNeue(
-                                  fontSize: size.width * 0.04,
-                                  color: Colors.white),
+                    // SizedBox(height: size.height * 0.03),
+                    !isComplete.value
+                        ? const SizedBox()
+                        : Padding(
+                            padding: EdgeInsets.only(left: size.width * 0.04),
+                            child: Text.rich(
+                              strutStyle: StrutStyle(
+                                  fontSize: size.width * 0.05, height: 0.5),
+                              TextSpan(
+                                text: 'INNOVATING FOR A\n',
+                                style: GoogleFonts.bebasNeue(
+                                    fontSize: size.width * 0.04,
+                                    color: Colors.white),
+                                children: [
+                                  TextSpan(
+                                    text: 'SMARTER ',
+                                    style: GoogleFonts.bebasNeue(
+                                        fontSize: size.width * 0.04,
+                                        color: Colors.white),
+                                  ),
+                                  TextSpan(
+                                    text: 'TOMORROW',
+                                    style: GoogleFonts.bebasNeue(
+                                        fontSize: size.width * 0.04,
+                                        color: Colors.black),
+                                  ),
+                                ],
+                              ),
                             ),
-                            TextSpan(
-                              text: 'TOMORROW',
-                              style: GoogleFonts.bebasNeue(
-                                  fontSize: size.width * 0.04,
-                                  color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  // SizedBox(height: size.height * 0.03),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
+                          ).animate().fadeIn(),
+                    // SizedBox(height: size.height * 0.03),
+                    Padding(
                       padding: EdgeInsets.only(left: size.width * 0.04),
                       child: Text.rich(
                         strutStyle: StrutStyle(
@@ -208,27 +213,28 @@ class _HeroSectionState extends State<HeroSection>
                           text:
                               'At FivR, we believe in the power of technology\n',
                           style: GoogleFonts.roboto(
-                              fontSize: size.width * 0.01, color: Colors.black),
+                            fontSize: size.width * 0.01,
+                            color: Colors.black,
+                          ),
                           children: [
                             TextSpan(
                               text: ' to transform lives and industries.  ',
                               style: GoogleFonts.roboto(
-                                  fontSize: size.width * 0.01,
-                                  color: Colors.white),
+                                fontSize: size.width * 0.01,
+                                color: Colors.white,
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                  ),
-                  // SizedBox(height: size.height * 0.07),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
+                    // SizedBox(height: size.height * 0.07),
+                    Padding(
                       padding: EdgeInsets.only(left: size.width * 0.04),
                       child: HoverAnimation(
-                        primaryColor: Colors.black,
-                        hoverColor: const Color(0xff2051FF),
+                        primaryColor: AppColors.granita, // Colors.black,
+                        hoverColor: AppColors
+                            .purpleCorallites, // const Color(0xff2051FF),
                         size: const Size(180, 60),
                         border: Border.all(
                           color: Colors.black,
@@ -239,37 +245,42 @@ class _HeroSectionState extends State<HeroSection>
                           child: Text(
                             'CONTACT US',
                             style: GoogleFonts.bebasNeue(
-                                fontSize: 18, color: Colors.white),
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       )
-                          .animate(delay: (preTime + 3200).milliseconds)
+                          .animate(delay: (preTime + 1500).milliseconds)
                           .scaleX(
                               alignment: Alignment.centerLeft,
                               duration: 600.milliseconds)
                           .slideX(),
                     ),
-                  ),
-                ],
-              ),
-            )
-                .animate(delay: 700.milliseconds)
-                .show()
-                .then(delay: 100.milliseconds)
-                .fadeIn(duration: 600.milliseconds)
-                .scaleX(
-                  begin: 1.2,
-                  end: 1,
-                  alignment: Alignment.centerLeft,
+                  ],
                 ),
-          ),
-          const SizedBox(width: 10),
-          const Expanded(
-            child: VerticalTextMenu(),
-          ),
-        ],
-      ),
-    );
+              )
+                  .animate(delay: 700.milliseconds)
+                  .show()
+                  .then(delay: 100.milliseconds)
+                  .fadeIn(duration: 600.milliseconds)
+                  .scaleX(
+                    begin: 1.2,
+                    end: 1,
+                    alignment: Alignment.centerLeft,
+                  )
+                  .callback(
+                    callback: (value) => isComplete.value = true,
+                  ),
+            ),
+            const SizedBox(width: 10),
+            const Expanded(
+              child: VerticalTextMenu(),
+            ),
+          ],
+        ),
+      );
+    });
   }
 
   @override
