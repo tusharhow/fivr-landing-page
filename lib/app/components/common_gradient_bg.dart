@@ -1,4 +1,6 @@
+import 'package:fivr_landing_page/app/components/animated_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CommonGradientBg extends HookConsumerWidget {
@@ -10,23 +12,31 @@ class CommonGradientBg extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.transparent,
-            Colors.black.withOpacity(0.0),
-            Colors.black.withOpacity(.8),
-            Colors.black,
-            Colors.black,
-          ],
-          stops: const [0.0, 0.14, 0.18, 0.28, 1.0],
+    return AnimatedBox(
+      detectedKey: "BG_GRADIENT",
+      tigerPoint: 0,
+      builder: (con, visible) => AnimatedContainer(
+        width: double.infinity,
+        duration: 800.milliseconds,
+        curve: Curves.fastOutSlowIn,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.transparent,
+              Colors.black.withOpacity(0.0),
+              Colors.black.withOpacity(.8),
+              Colors.black,
+              Colors.black,
+            ],
+            stops: !visible
+                ? [0.0, 0.01, 0.15, 0.3, 1.0]
+                : const [0.0, 0.14, 0.18, 0.28, 1.0],
+          ),
         ),
+        child: child,
       ),
-      child: child,
     );
   }
 }

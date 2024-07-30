@@ -13,10 +13,12 @@ class AnimatedBox extends HookConsumerWidget {
     super.key,
     required this.detectedKey,
     required this.builder,
+    this.tigerPoint,
   });
 
   final String detectedKey;
   final AnimatedBoxBuilder builder;
+  final double? tigerPoint;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,7 +31,7 @@ class AnimatedBox extends HookConsumerWidget {
       key: ValueKey(detectedKey),
       onVisibilityChanged: (visibilityInfo) {
         log("${visibilityInfo.key} ${visibilityInfo.visibleFraction} $isVisible");
-        if (visibilityInfo.visibleFraction > 0.1) {
+        if (visibilityInfo.visibleFraction > (tigerPoint ?? 0.1)) {
           controller.forward();
 
           isVisible.value = true;
