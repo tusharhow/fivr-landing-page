@@ -1,4 +1,3 @@
-import 'package:fivr_landing_page/app/application/general_provider.dart';
 import 'package:fivr_landing_page/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -14,7 +13,6 @@ class MissionVisionWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final general = ref.watch(generalProvider);
     return AspectRatio(
       aspectRatio: 1920 / 800,
       child: AnimatedBox(

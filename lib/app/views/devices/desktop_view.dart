@@ -1,13 +1,15 @@
 import 'package:fivr_landing_page/app/application/general_provider.dart';
-import 'package:fivr_landing_page/app/components/focus_widget.dart';
 import 'package:fivr_landing_page/app/components/our_team_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import '../../components/common_gradient_bg.dart';
+import '../../components/focus_widget.dart';
 import '../../components/hero_section.dart';
 import '../../components/mission_vision.dart';
+import '../../components/our_portfolio_widget.dart';
 
 final mainScrollerController = Provider<ScrollController>(
   (ref) => throw UnimplementedError(),
@@ -66,7 +68,14 @@ class _DesktopViewState extends ConsumerState<DesktopView>
               const SizedBox(height: 10),
               const FocusWidget(),
               const SizedBox(height: 10),
-              const OurTeamWidget(),
+              const CommonGradientBg(
+                child: Column(
+                  children: [
+                    OurTeamWidget(),
+                    OurPortfolioWidget(),
+                  ],
+                ),
+              ),
               Container(
                 color: Colors.orange,
                 height: size.height * 0.1,
