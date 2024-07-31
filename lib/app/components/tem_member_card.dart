@@ -58,8 +58,8 @@ class TeamMemberCardState extends State<TeamMemberCard> {
       )
           .animate()
           .fadeIn()
-          .flipV(begin: -.05, perspective: .5)
-          .flipH(begin: -.05, perspective: .5),
+          .flipV(begin: -.1, perspective: .5)
+          .flipH(begin: -.1, perspective: .5),
     );
   }
 }
