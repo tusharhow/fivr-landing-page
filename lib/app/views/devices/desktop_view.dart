@@ -1,5 +1,4 @@
 import 'package:fivr_landing_page/app/application/general_provider.dart';
-import 'package:fivr_landing_page/app/components/our_team_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,6 +9,7 @@ import '../../components/focus_widget.dart';
 import '../../components/hero_section.dart';
 import '../../components/mission_vision.dart';
 import '../../components/our_portfolio_widget.dart';
+import '../../components/our_team_widget.dart';
 
 final mainScrollerController = Provider<ScrollController>(
   (ref) => throw UnimplementedError(),
