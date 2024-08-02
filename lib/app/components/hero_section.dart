@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hover_animation/hover_animation.dart';
@@ -162,69 +163,65 @@ class _HeroSectionState extends ConsumerState<HeroSection>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: size.width * 0.045,
-                      ),
-                      child: const Text(
-                        'FivR',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      padding: EdgeInsets.symmetric(horizontal: 92.w)
+                          .copyWith(top: 28.h),
+                      child: Image.asset(
+                        'assets/images/FivR.png',
+                        width: 100.h,
+                        height: 36.h,
                       ),
                     ),
                     // SizedBox(height: size.height * 0.03),
                     !isComplete.value
                         ? const SizedBox()
                         : Padding(
-                            padding: EdgeInsets.only(left: size.width * 0.04),
-                            child: Text.rich(
-                              strutStyle: StrutStyle(
-                                  fontSize: size.width * 0.05, height: 0.5),
-                              TextSpan(
-                                text: 'INNOVATING FOR A\n',
+                            padding: EdgeInsets.only(left: 74.w),
+                            child: SizedBox(
+                              width: 1000.w,
+                              child: SelectableText.rich(
+                                TextSpan(
+                                  text: 'INNOVATING FOR A SMARTER',
+                                  children: [
+                                    TextSpan(
+                                      text: 'TOMORROW',
+                                      style: GoogleFonts.bebasNeue(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 style: GoogleFonts.bebasNeue(
-                                    fontSize: size.width * 0.04,
-                                    color: Colors.white),
-                                children: [
-                                  TextSpan(
-                                    text: 'SMARTER ',
-                                    style: GoogleFonts.bebasNeue(
-                                        fontSize: size.width * 0.04,
-                                        color: Colors.white),
-                                  ),
-                                  TextSpan(
-                                    text: 'TOMORROW',
-                                    style: GoogleFonts.bebasNeue(
-                                        fontSize: size.width * 0.04,
-                                        color: Colors.black),
-                                  ),
-                                ],
+                                  fontSize: 120.sp,
+                                  color: Colors.white,
+                                  height: 1,
+                                ),
                               ),
                             ),
                           ).animate().fadeIn(),
                     // SizedBox(height: size.height * 0.03),
                     Padding(
-                      padding: EdgeInsets.only(left: size.width * 0.04),
-                      child: Text.rich(
-                        strutStyle: StrutStyle(
-                            fontSize: size.width * 0.05, height: 0.01),
-                        TextSpan(
-                          text:
-                              'At FivR, we believe in the power of technology\n',
-                          style: GoogleFonts.roboto(
-                            fontSize: size.width * 0.01,
-                            color: Colors.black,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: ' to transform lives and industries.  ',
-                              style: GoogleFonts.roboto(
-                                fontSize: size.width * 0.01,
-                                color: Colors.white,
+                      padding: EdgeInsets.only(left: 72.w),
+                      child: SizedBox(
+                        width: 720.w,
+                        child: SelectableText.rich(
+                          TextSpan(
+                            text: '                ',
+                            children: [
+                              const TextSpan(
+                                text:
+                                    'At FivR, we believe in the power of technology',
                               ),
-                            ),
-                          ],
+                              TextSpan(
+                                text: ' to transform lives and industries.  ',
+                                style: GoogleFonts.roboto(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          style: GoogleFonts.roboto(
+                            fontSize: 35.sp,
+                          ),
                         ),
                       ),
                     ),
@@ -245,7 +242,8 @@ class _HeroSectionState extends ConsumerState<HeroSection>
                           child: Text(
                             'CONTACT US',
                             style: GoogleFonts.bebasNeue(
-                              fontSize: 18,
+                              fontSize: 20.sp,
+                              height: 1.5,
                               color: Colors.white,
                             ),
                           ),
@@ -273,7 +271,7 @@ class _HeroSectionState extends ConsumerState<HeroSection>
                     callback: (value) => isComplete.value = true,
                   ),
             ),
-            const SizedBox(width: 10),
+            10.horizontalSpace,
             const Expanded(
               child: VerticalTextMenu(),
             ),

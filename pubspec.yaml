@@ -42,6 +42,7 @@ dependencies:
   flutter_animate: ^4.5.0
   hooks_riverpod: ^2.5.1
   flutter_hooks: ^0.20.5
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:
