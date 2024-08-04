@@ -1,18 +1,22 @@
 import 'package:fivr_landing_page/app/application/general_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../components/common_gradient_bg.dart';
 import '../../components/focus_widget.dart';
+import '../../components/footer_widget.dart';
 import '../../components/hero_section.dart';
+import '../../components/join_us_widget.dart';
 import '../../components/mission_vision.dart';
 import '../../components/our_portfolio_widget.dart';
 import '../../components/our_team_widget.dart';
 
-final mainScrollerController = Provider<ScrollController>(
-  (ref) => throw UnimplementedError(),
+final mainScrollerController = Provider.autoDispose<ScrollController>(
+  (ref) => ScrollController(),
 );
 
 class DesktopView extends StatefulHookConsumerWidget {
@@ -49,8 +53,19 @@ class _DesktopViewState extends ConsumerState<DesktopView>
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-    final scrollController = useScrollController();
+    final scrollController = ref.watch(mainScrollerController);
+
+    final isTop = useState<bool>(false);
+    void listener() {
+      isTop.value = scrollController.offset > 00;
+    }
+
+    useEffect(() {
+      scrollController.addListener(listener);
+      return () {
+        scrollController.removeListener(listener);
+      };
+    }, []);
     return Scaffold(
       // backgroundColor: AppColors.vibrantOrange,
       body: Scrollbar(
@@ -63,11 +78,11 @@ class _DesktopViewState extends ConsumerState<DesktopView>
             children: [
               const HeroSection(),
               // SizedBox(height: size.height),
-              const SizedBox(height: 10),
+              10.verticalSpace,
               const MissionVisionWidget(),
-              const SizedBox(height: 10),
+              10.verticalSpace,
               const FocusWidget(),
-              const SizedBox(height: 10),
+              10.verticalSpace,
               const CommonGradientBg(
                 child: Column(
                   children: [
@@ -76,40 +91,24 @@ class _DesktopViewState extends ConsumerState<DesktopView>
                   ],
                 ),
               ),
-              Container(
-                color: Colors.orange,
-                height: size.height * 0.1,
-                width: size.width * 0.8,
-                child: const Center(child: Text('Orange Container')),
-              ),
-              Container(
-                color: Colors.teal,
-                height: size.height * 0.1,
-                width: size.width * 0.8,
-                child: const Center(child: Text('Teal Container')),
-              ),
-              Container(
-                color: Colors.pink,
-                height: size.height * 0.1,
-                width: size.width * 0.8,
-                child: const Center(child: Text('Pink Container')),
-              ),
-              Container(
-                color: Colors.brown,
-                height: size.height * 0.1,
-                width: size.width * 0.8,
-                child: const Center(child: Text('Brown Container')),
-              ),
-              Container(
-                color: Colors.grey,
-                height: size.height * 0.1,
-                width: size.width * 0.8,
-                child: const Center(child: Text('Grey Container')),
-              )
+              const JoinUsWidget(),
+              const FooterWidget(),
             ],
           ),
         ),
       ),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 15.h),
+        child: FloatingActionButton(
+          onPressed: () async => await scrollController.animateTo(
+            scrollController.position.minScrollExtent,
+            duration: 600.milliseconds,
+            curve: Curves.fastEaseInToSlowEaseOut,
+          ),
+          child: const Icon(Icons.navigation),
+        ).animate(target: isTop.value ? 1 : 0).scaleX().fadeIn(),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
     );
   }
 

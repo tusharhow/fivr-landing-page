@@ -1,17 +1,27 @@
 import 'package:fivr_landing_page/app/components/hero_section.dart';
+import 'package:fivr_landing_page/app/views/devices/desktop_view.dart';
+import 'package:fivr_landing_page/core/utils/app_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../core/core.dart';
 
-class VerticalTextMenu extends StatelessWidget {
+final selectedMenuProvider = StateProvider<int?>((ref) {
+  return null;
+});
+
+class VerticalTextMenu extends HookConsumerWidget {
   const VerticalTextMenu({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(mainScrollerController);
+    final menuIndex = ref.watch(selectedMenuProvider);
     final sideMenuTextStyle = GoogleFonts.montserrat(
-      fontSize: 14,
+      fontSize: 14.sp,
       fontWeight: FontWeight.w700,
       height: 1.11,
       letterSpacing: .9,
@@ -29,33 +39,97 @@ class VerticalTextMenu extends StatelessWidget {
           children: [
             RotatedBox(
               quarterTurns: 3,
-              child: Text(
-                'PORTFOLIO',
-                style: sideMenuTextStyle,
+              child: InkWell(
+                onTap: () async {
+                  await controller.position.ensureVisible(
+                    AppKeys.portfolioKey.currentContext
+                        ?.findAncestorRenderObjectOfType() as RenderObject,
+                    duration: 600.milliseconds,
+                    curve: Curves.fastEaseInToSlowEaseOut,
+                  );
+
+                  ref.read(selectedMenuProvider.notifier).update((state) => 0);
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(8.w),
+                  child: Text(
+                    'PORTFOLIO',
+                    style: sideMenuTextStyle.copyWith(
+                        color: menuIndex == 0 ? Colors.white : null),
+                  ),
+                ),
               ),
             ),
             // const SizedBox(height: 35),
             RotatedBox(
               quarterTurns: 3,
-              child: Text(
-                'TEAM',
-                style: sideMenuTextStyle,
+              child: InkWell(
+                onTap: () async {
+                  await controller.position.ensureVisible(
+                    AppKeys.teamKey.currentContext
+                        ?.findAncestorRenderObjectOfType() as RenderObject,
+                    duration: 600.milliseconds,
+                    curve: Curves.fastEaseInToSlowEaseOut,
+                  );
+
+                  ref.read(selectedMenuProvider.notifier).update((state) => 1);
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(8.w),
+                  child: Text(
+                    'TEAM',
+                    style: sideMenuTextStyle.copyWith(
+                        color: menuIndex == 1 ? Colors.white : null),
+                  ),
+                ),
               ),
             ),
+
             // const SizedBox(height: 35),
             RotatedBox(
               quarterTurns: 3,
-              child: Text(
-                'OUR PROMISE',
-                style: sideMenuTextStyle,
+              child: InkWell(
+                onTap: () async {
+                  await controller.position.ensureVisible(
+                    AppKeys.focusKey.currentContext
+                        ?.findAncestorRenderObjectOfType() as RenderObject,
+                    duration: 600.milliseconds,
+                    curve: Curves.fastEaseInToSlowEaseOut,
+                  );
+
+                  ref.read(selectedMenuProvider.notifier).update((state) => 2);
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(8.w),
+                  child: SelectableText(
+                    'FOCUS AREAS',
+                    style: sideMenuTextStyle.copyWith(
+                        color: menuIndex == 2 ? Colors.white : null),
+                  ),
+                ),
               ),
-            ),
-            // const SizedBox(height: 35),
+            ), // const SizedBox(height: 35),
             RotatedBox(
               quarterTurns: 3,
-              child: Text(
-                'FOCUS AREAS',
-                style: sideMenuTextStyle.copyWith(color: Colors.white),
+              child: InkWell(
+                onTap: () async {
+                  await controller.position.ensureVisible(
+                    AppKeys.promiseKey.currentContext
+                        ?.findAncestorRenderObjectOfType() as RenderObject,
+                    duration: 600.milliseconds,
+                    curve: Curves.fastEaseInToSlowEaseOut,
+                  );
+
+                  ref.read(selectedMenuProvider.notifier).update((state) => 3);
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(8.w),
+                  child: Text(
+                    'OUR PROMISE',
+                    style: sideMenuTextStyle.copyWith(
+                        color: menuIndex == 3 ? Colors.white : null),
+                  ),
+                ),
               ),
             ),
           ]
