@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -30,7 +28,7 @@ class AnimatedBox extends HookConsumerWidget {
     return VisibilityDetector(
       key: ValueKey(detectedKey),
       onVisibilityChanged: (visibilityInfo) {
-        log("${visibilityInfo.key} ${visibilityInfo.visibleFraction} $isVisible");
+        // log("${visibilityInfo.key} ${visibilityInfo.visibleFraction} $isVisible");
         if (visibilityInfo.visibleFraction > (tigerPoint ?? 0.1)) {
           controller.forward();
 

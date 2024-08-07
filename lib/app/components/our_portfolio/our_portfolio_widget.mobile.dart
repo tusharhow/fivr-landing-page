@@ -8,8 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class OurPortfolioWidget extends HookConsumerWidget {
-  const OurPortfolioWidget({super.key});
+class OurPortfolioMobileWidget extends HookConsumerWidget {
+  const OurPortfolioMobileWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

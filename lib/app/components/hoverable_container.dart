@@ -4,11 +4,13 @@ class HoverableContainer extends StatefulWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
   final Color? hoverColor;
+  final double? width;
 
   const HoverableContainer({
     super.key,
     required this.child,
     this.padding,
+    this.width,
     required this.hoverColor,
   });
 
@@ -33,6 +35,7 @@ class _HoverableContainerState extends State<HoverableContainer> {
       onExit: (_) => _onHover(false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
+        width: widget.width,
         padding: widget.padding,
         transform: _isHovered ? hoverTransform : Matrix4.identity(),
         decoration: BoxDecoration(
