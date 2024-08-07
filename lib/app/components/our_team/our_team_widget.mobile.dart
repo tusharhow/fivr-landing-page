@@ -8,11 +8,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../models/user_model.dart';
-import 'tem_member_card.dart';
+import '../../models/user_model.dart';
+import '../tem_member_card.dart';
 
-class OurTeamWidget extends HookConsumerWidget {
-  const OurTeamWidget({super.key});
+class OurTeamMobileWidget extends HookConsumerWidget {
+  const OurTeamMobileWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
