@@ -42,8 +42,9 @@ class MobileView extends HookConsumerWidget {
         controller: controller,
         slivers: [
           SliverAppBar(
-            floating: true,
-            snap: true,
+            floating: false,
+            // snap: true,
+            pinned: false,
             backgroundColor: Colors.transparent,
             elevation: 0,
             shadowColor: Colors.transparent,
@@ -97,7 +98,16 @@ class MobileView extends HookConsumerWidget {
               //     ),
               //   ),
               // ),
-            ),
+            )
+                .animate(delay: 700.milliseconds)
+                .show()
+                .then(delay: 100.milliseconds)
+                .fadeIn(duration: 600.milliseconds)
+                .scaleX(
+                  begin: 1.2,
+                  end: 1,
+                  alignment: Alignment.centerLeft,
+                ),
           ),
           const SliverToBoxAdapter(child: HeroSectionMobile()),
           vGap(context).toBoxSliver(),
