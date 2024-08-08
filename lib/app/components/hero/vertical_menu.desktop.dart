@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../core/core.dart';
 import '../../application/provider.dart';
@@ -21,7 +22,7 @@ class VerticalTextMenuDesktop extends HookConsumerWidget {
     final controller = ref.watch(mainScrollerController);
     final menuIndex = ref.watch(selectedMenuProvider);
     final sideMenuTextStyle = GoogleFonts.montserrat(
-      fontSize: 14.sp,
+      fontSize: 14,
       fontWeight: FontWeight.w700,
       height: 1.11,
       letterSpacing: .9,
@@ -29,7 +30,12 @@ class VerticalTextMenuDesktop extends HookConsumerWidget {
     );
     return Container(
       color: AppColors.granita, // Colors.black,
-      width: 212,
+      width: getValueForScreenType(
+        context: context,
+        desktop: 212.w,
+        tablet: 85,
+        mobile: 120,
+      ),
       height: double.infinity,
       // padding: const EdgeInsets.symmetric(vertical: 116),
       child: Center(

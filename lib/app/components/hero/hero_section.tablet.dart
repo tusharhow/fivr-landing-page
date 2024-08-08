@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:hover_animation/hover_animation.dart';
 
 import '../../../core/core.dart';
+import '../logo_widget.dart';
 import 'vertical_menu.desktop.dart';
+import 'widgets/widgets.dart';
 
 const slideTime = 1000;
 const scaleTime = 300;
@@ -146,7 +145,6 @@ class _HeroSectionState extends ConsumerState<HeroSectionTablet>
           key: globalKey,
           children: [
             Expanded(
-              flex: 10,
               child: Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -159,102 +157,17 @@ class _HeroSectionState extends ConsumerState<HeroSectionTablet>
                   ),
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 92.w)
-                          .copyWith(top: 28.h),
-                      child: Image.asset(
-                        'assets/images/FivR.png',
-                        width: 100.h,
-                        height: 36.h,
-                      ),
-                    ),
-                    // SizedBox(height: size.height * 0.03),
-                    !isComplete.value
-                        ? const SizedBox()
-                        : Padding(
-                            padding: EdgeInsets.only(left: 74.w),
-                            child: SizedBox(
-                              width: 1000.w,
-                              child: SelectableText.rich(
-                                TextSpan(
-                                  text: 'INNOVATING FOR A SMARTER',
-                                  children: [
-                                    TextSpan(
-                                      text: 'TOMORROW',
-                                      style: GoogleFonts.bebasNeue(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                style: GoogleFonts.bebasNeue(
-                                  fontSize: 120.sp,
-                                  color: Colors.white,
-                                  height: 1,
-                                ),
-                              ),
-                            ),
-                          ).animate().fadeIn(),
-                    // SizedBox(height: size.height * 0.03),
-                    Padding(
-                      padding: EdgeInsets.only(left: 72.w),
-                      child: SizedBox(
-                        width: 720.w,
-                        child: SelectableText.rich(
-                          TextSpan(
-                            text: '                ',
-                            children: [
-                              const TextSpan(
-                                text:
-                                    'At FivR, we believe in the power of technology',
-                              ),
-                              TextSpan(
-                                text: ' to transform lives and industries.  ',
-                                style: GoogleFonts.roboto(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          style: GoogleFonts.roboto(
-                            fontSize: 35.sp,
-                          ),
-                        ),
-                      ),
-                    ),
-                    // SizedBox(height: size.height * 0.07),
-                    Padding(
-                      padding: EdgeInsets.only(left: size.width * 0.04),
-                      child: HoverAnimation(
-                        primaryColor: AppColors.granita, // Colors.black,
-                        hoverColor: AppColors
-                            .purpleCorallites, // const Color(0xff2051FF),
-                        size: const Size(180, 60),
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 2,
-                        ),
-                        onTap: () {},
-                        child: Center(
-                          child: Text(
-                            'CONTACT US',
-                            style: GoogleFonts.bebasNeue(
-                              fontSize: 20.sp,
-                              height: 1.5,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      )
-                          .animate(delay: (preTime + 1500).milliseconds)
-                          .scaleX(
-                              alignment: Alignment.centerLeft,
-                              duration: 600.milliseconds)
-                          .slideX(),
-                    ),
+                    const LogoWidget(),
+                    const SizedBox(height: 70),
+                    !isComplete.value ? const SizedBox() : const HeroTitle(),
+                    const SizedBox(height: 42),
+                    const HeroSubtitle(),
+                    const SizedBox(height: 38),
+                    const ContactUsBotton(),
+                    const SizedBox(height: 18),
                   ],
                 ),
               )
@@ -271,10 +184,8 @@ class _HeroSectionState extends ConsumerState<HeroSectionTablet>
                     callback: (value) => isComplete.value = true,
                   ),
             ),
-            10.horizontalSpace,
-            const Expanded(
-              child: VerticalTextMenuDesktop(),
-            ),
+            hGap(context),
+            const VerticalTextMenuDesktop(),
           ],
         ),
       );

@@ -34,7 +34,7 @@ class VerticalTextMenuMobile extends HookConsumerWidget {
     );
     return Container(
       color: AppColors.granita, // Colors.black,
-      width: 212,
+      width: 120,
       height: double.infinity,
       // padding: const EdgeInsets.symmetric(vertical: 116),
       child: Center(

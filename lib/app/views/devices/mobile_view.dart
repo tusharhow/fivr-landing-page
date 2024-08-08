@@ -11,6 +11,7 @@ import '../../application/provider.dart';
 import '../../components/focus/focus_widget.mobile.dart';
 import '../../components/hero/vertical_menu.mobile.dart';
 import '../../components/join_us/join_us_widget.mobile.dart';
+import '../../components/logo_widget.dart';
 import '../../components/mission_vision/mission_vision.mobile.dart';
 import '../../components/our_portfolio/our_portfolio_widget.mobile.dart';
 import '../../components/our_portfolio/widgets/widgets.dart';
@@ -51,13 +52,7 @@ class MobileView extends HookConsumerWidget {
             surfaceTintColor: Colors.transparent,
             // toolbarHeight: 0,
             leadingWidth: 108,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 34, top: 20, bottom: 12),
-              child: Image.asset(
-                'assets/images/FivR.png',
-                width: 108,
-              ),
-            ),
+            leading: const LogoWidget(),
             actions: [
               Padding(
                 padding: const EdgeInsets.only(top: 24, right: 20),

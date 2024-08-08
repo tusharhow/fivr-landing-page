@@ -1,11 +1,11 @@
-import 'package:fivr_landing_page/app/components/hero/hero_section.tablet.dart';
-import 'package:fivr_landing_page/app/components/mission_vision/mission_vision.tablet.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/core.dart';
 import '../../application/provider.dart';
 import '../../components/focus/focus_widget.tablet.dart';
+import '../../components/hero/hero_section.tablet.dart';
+import '../../components/mission_vision/mission_vision.tablet.dart';
 
 class TabletView extends HookConsumerWidget {
   const TabletView({super.key});
