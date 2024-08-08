@@ -10,3 +10,9 @@ double gap(BuildContext context) => getValueForScreenType<double>(
 
 SizedBox hGap(BuildContext context) => SizedBox(width: gap(context));
 SizedBox vGap(BuildContext context) => SizedBox(height: gap(context));
+Widget vGapBlack(BuildContext context) => ColoredBox(
+      color: Colors.black,
+      child: SizedBox(
+        height: gap(context),
+      ),
+    );

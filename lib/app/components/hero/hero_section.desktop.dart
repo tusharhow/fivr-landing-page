@@ -7,8 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hover_animation/hover_animation.dart';
 
-import '../../core/core.dart';
-import 'vertical_menu.dart';
+import '../../../core/core.dart';
+import 'vertical_menu.desktop.dart';
 
 const slideTime = 1000;
 const scaleTime = 300;
@@ -16,14 +16,14 @@ const scaleTime = 300;
 /// 1000 + 300 = 1300 milliseconds
 const preTime = 1000;
 
-class HeroSection extends StatefulHookConsumerWidget {
-  const HeroSection({super.key});
+class HeroSectionDesktop extends StatefulHookConsumerWidget {
+  const HeroSectionDesktop({super.key});
 
   @override
-  ConsumerState<HeroSection> createState() => _HeroSectionState();
+  ConsumerState<HeroSectionDesktop> createState() => _HeroSectionState();
 }
 
-class _HeroSectionState extends ConsumerState<HeroSection>
+class _HeroSectionState extends ConsumerState<HeroSectionDesktop>
     with TickerProviderStateMixin {
   late final AnimationController slideAnimationController;
   late final Animation<Offset> slideAnimation;
@@ -273,7 +273,7 @@ class _HeroSectionState extends ConsumerState<HeroSection>
             ),
             10.horizontalSpace,
             const Expanded(
-              child: VerticalTextMenu(),
+              child: VerticalTextMenuDesktop(),
             ),
           ],
         ),

@@ -40,3 +40,36 @@ class CommonGradientBg extends HookConsumerWidget {
     );
   }
 }
+
+class CommonGradientBgMobile extends HookConsumerWidget {
+  const CommonGradientBgMobile({
+    super.key,
+    required this.child,
+  });
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return AnimatedContainer(
+      width: double.infinity,
+      duration: 800.milliseconds,
+      curve: Curves.fastOutSlowIn,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.transparent,
+            Colors.black.withOpacity(0.0),
+            Colors.black.withOpacity(.6),
+            Colors.black.withOpacity(.85),
+            Colors.black.withOpacity(1),
+            Colors.black,
+          ],
+          stops: const [0.0, 0.5, 0.65, 0.8, 0.95, 1.0],
+        ),
+      ),
+      child: child,
+    );
+  }
+}

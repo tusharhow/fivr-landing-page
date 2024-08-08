@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../models/user_model.dart';
-import '../tem_member_card.dart';
+import 'widgets/tem_member_card.dart';
 
 class OurTeamTabletWidget extends HookConsumerWidget {
   const OurTeamTabletWidget({super.key});

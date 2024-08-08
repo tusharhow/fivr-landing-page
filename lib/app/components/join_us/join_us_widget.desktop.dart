@@ -1,14 +1,15 @@
 import 'package:fivr_landing_page/app/components/animated_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hover_animation/hover_animation.dart';
 
-import '../../core/core.dart';
+import '../../../core/core.dart';
 
-class JoinUsWidget extends HookConsumerWidget {
-  const JoinUsWidget({super.key});
+class JoinUsWidgetDesktop extends HookConsumerWidget {
+  const JoinUsWidgetDesktop({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,14 +22,14 @@ class JoinUsWidget extends HookConsumerWidget {
             ? const SizedBox()
             : Column(
                 children: [
-                  const SizedBox(height: 160),
+                  SizedBox(height: 160.w),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: size.width * .14),
                     child: SelectableText(
                       'Join us on our journey to redefine the technological landscape.',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.bebasNeue(
-                        fontSize: 64,
+                        fontSize: 80.sp,
                         fontWeight: FontWeight.w500,
                         height: 1.2,
                       ),
@@ -37,12 +38,12 @@ class JoinUsWidget extends HookConsumerWidget {
                         .fadeIn()
                         .scaleX(alignment: Alignment.center),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.w),
                   SelectableText(
                     'Together, we can build a smarter, more connected world.',
-                    style: GoogleFonts.roboto(fontSize: 14),
+                    style: GoogleFonts.roboto(fontSize: 22.sp),
                   ),
-                  const SizedBox(height: 56),
+                  SizedBox(height: 56.w),
                   HoverAnimation(
                     primaryColor: AppColors.granita, // Colors.black,
                     hoverColor:
@@ -57,8 +58,9 @@ class JoinUsWidget extends HookConsumerWidget {
                       child: Text(
                         'DIVE DIPPER',
                         style: GoogleFonts.bebasNeue(
-                          fontSize: 18,
+                          fontSize: 24.sp,
                           color: Colors.white,
+                          height: 1.5,
                         ),
                       ),
                     ),
@@ -72,7 +74,7 @@ class JoinUsWidget extends HookConsumerWidget {
                         end: 0,
                       )
                       .fadeIn(),
-                  const SizedBox(height: 72)
+                  SizedBox(height: 72.w)
                 ],
               ),
       ),

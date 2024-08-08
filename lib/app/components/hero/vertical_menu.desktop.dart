@@ -1,5 +1,4 @@
-import 'package:fivr_landing_page/app/components/hero_section.dart';
-import 'package:fivr_landing_page/app/views/devices/desktop_view.dart';
+import 'package:fivr_landing_page/app/components/hero/hero_section.desktop.dart';
 import 'package:fivr_landing_page/core/utils/app_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -7,14 +6,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../core/core.dart';
+import '../../../core/core.dart';
+import '../../application/provider.dart';
 
 final selectedMenuProvider = StateProvider<int?>((ref) {
   return null;
 });
 
-class VerticalTextMenu extends HookConsumerWidget {
-  const VerticalTextMenu({super.key});
+class VerticalTextMenuDesktop extends HookConsumerWidget {
+  const VerticalTextMenuDesktop({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
