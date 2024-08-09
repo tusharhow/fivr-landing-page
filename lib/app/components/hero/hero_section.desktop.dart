@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/core.dart';
 import '../logo_widget.dart';
-import 'vertical_menu.desktop.dart';
+import 'vertical_menu.desktop.tablet.dart';
 import 'widgets/widgets.dart';
 
 const slideTime = 1000;
@@ -184,8 +183,8 @@ class _HeroSectionState extends ConsumerState<HeroSectionDesktop>
                     callback: (value) => isComplete.value = true,
                   ),
             ),
-            10.horizontalSpace,
-            const VerticalTextMenuDesktop(),
+            hGap(context),
+            const VerticalTextMenuDesktopTablet(),
           ],
         ),
       );

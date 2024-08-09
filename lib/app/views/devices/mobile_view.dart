@@ -1,5 +1,5 @@
 import 'package:fivr_landing_page/app/components/common_gradient_bg.dart';
-import 'package:fivr_landing_page/app/components/footer/footer_widget.mobile.dart';
+import 'package:fivr_landing_page/app/components/footer/footer_widget.mobile.tablet.dart';
 import 'package:fivr_landing_page/app/components/hero/hero_section.mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -10,12 +10,12 @@ import '../../../core/core.dart';
 import '../../application/provider.dart';
 import '../../components/focus/focus_widget.mobile.dart';
 import '../../components/hero/vertical_menu.mobile.dart';
-import '../../components/join_us/join_us_widget.mobile.dart';
+import '../../components/join_us/join_us_widget.mobile.tablet.dart';
 import '../../components/logo_widget.dart';
 import '../../components/mission_vision/mission_vision.mobile.dart';
-import '../../components/our_portfolio/our_portfolio_widget.mobile.dart';
+import '../../components/our_portfolio/our_portfolio_widget.mobile.tablet.dart';
 import '../../components/our_portfolio/widgets/widgets.dart';
-import '../../components/our_team/our_team_widget.mobile.dart';
+import '../../components/our_team/our_team_widget.mobile.tablet.dart';
 
 class MobileView extends HookConsumerWidget {
   const MobileView({super.key});
@@ -113,8 +113,8 @@ class MobileView extends HookConsumerWidget {
           CommonGradientBgMobile(
             child: Column(
               children: [
-                const OurTeamMobileWidget(),
-                const OurPortfolioMobileWidget(),
+                const OurTeamMobileTabletWidget(),
+                const OurPortfolioMobileTabletWidget(),
                 vGap(context),
               ],
             ),
@@ -133,8 +133,8 @@ class MobileView extends HookConsumerWidget {
           vGapBlack(context).toBoxSliver(),
           const Road().toBoxSliver(),
           vGap(context).toBoxSliver(),
-          const JoinUsWidgetMobile().toBoxSliver(),
-          const FooterWidgetMobile().toBoxSliver(),
+          const JoinUsWidgetMobileTablet().toBoxSliver(),
+          const FooterWidgetMobileTablet().toBoxSliver(),
         ],
       ),
       endDrawer: Row(

@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../../core/core.dart';
 
@@ -15,12 +16,18 @@ class PixiJS2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.purpleHeather, // const Color(0xff3B0D3C),
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(
+        getValueForScreenType(
+          context: context,
+          mobile: 20,
+          tablet: 40,
+        ),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
+          const SizedBox(height: 14),
           Align(
             alignment: Alignment.topRight,
             child: SvgPicture.asset(
@@ -29,7 +36,7 @@ class PixiJS2 extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          const SizedBox(height: 44),
+          // const SizedBox(height: 44),
           SelectableText(
             'Technology',
             style: GoogleFonts.bebasNeue(
@@ -47,7 +54,7 @@ class PixiJS2 extends StatelessWidget {
               height: 1.5,
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 10),
         ],
       ),
     )

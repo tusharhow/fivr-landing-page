@@ -14,8 +14,8 @@ final selectedMenuProvider = StateProvider<int?>((ref) {
   return null;
 });
 
-class VerticalTextMenuDesktop extends HookConsumerWidget {
-  const VerticalTextMenuDesktop({super.key});
+class VerticalTextMenuDesktopTablet extends HookConsumerWidget {
+  const VerticalTextMenuDesktopTablet({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -107,7 +107,7 @@ class VerticalTextMenuDesktop extends HookConsumerWidget {
                 },
                 child: Padding(
                   padding: EdgeInsets.all(8.w),
-                  child: SelectableText(
+                  child: Text(
                     'FOCUS AREAS',
                     style: sideMenuTextStyle.copyWith(
                         color: menuIndex == 2 ? Colors.white : null),

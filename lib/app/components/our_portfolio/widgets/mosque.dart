@@ -1,7 +1,9 @@
+import 'package:fivr_landing_page/app/components/technology_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../../core/core.dart';
 
@@ -22,7 +24,11 @@ class Mosque extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AspectRatio(
-            aspectRatio: 414 / 264,
+            aspectRatio: getValueForScreenType(
+              context: context,
+              mobile: 414 / 264,
+              tablet: 833 / 480,
+            ),
             child: Image.asset(
               'assets/images/mosque.png',
               width: double.infinity,
@@ -33,19 +39,15 @@ class Mosque extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 22, right: 22, top: 30),
+            padding: getValueForScreenType(
+              context: context,
+              mobile: const EdgeInsets.only(left: 22, right: 22, top: 30),
+              tablet: const EdgeInsets.only(left: 40, right: 40, top: 100),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SelectableText(
-                  'Technology',
-                  style: GoogleFonts.bebasNeue(
-                    color: Colors.white,
-                    fontSize: 35,
-                    letterSpacing: .5,
-                    height: 1.6,
-                  ),
-                ),
+                const TechnologyText(fontSize: 35, textColor: Colors.white),
                 SvgPicture.asset(
                   'vectors/pixijs.svg',
                   height: 30,
@@ -55,17 +57,32 @@ class Mosque extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22),
+            padding: EdgeInsets.symmetric(
+              horizontal: getValueForScreenType(
+                context: context,
+                mobile: 22,
+                tablet: 40,
+              ),
+            ),
             child: SelectableText(
               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
               style: GoogleFonts.roboto(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: getValueForScreenType(
+                  context: context,
+                  mobile: 18,
+                  tablet: 20,
+                ),
                 height: 1.5,
               ),
             ),
           ),
-          const SizedBox(height: 30),
+          SizedBox(
+              height: getValueForScreenType(
+            context: context,
+            mobile: 30,
+            tablet: 40,
+          )),
         ],
       ),
     )

@@ -1,7 +1,3 @@
-import 'package:fivr_landing_page/app/components/focus/focus_widget.desktop.dart';
-import 'package:fivr_landing_page/app/components/hero/hero_section.desktop.dart';
-import 'package:fivr_landing_page/app/components/mission_vision/mission_vision.desktop.dart';
-import 'package:fivr_landing_page/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -9,10 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import '../../../core/utils/internal_gap.dart';
 import '../../application/provider.dart';
 import '../../components/common_gradient_bg.dart';
+import '../../components/focus/focus_widget.desktop.dart';
 import '../../components/footer/footer_widget.desktop.dart';
+import '../../components/hero/hero_section.desktop.dart';
 import '../../components/join_us/join_us_widget.desktop.dart';
+import '../../components/mission_vision/mission_vision.desktop.dart';
 import '../../components/our_portfolio/our_portfolio_widget.desktop.dart';
 import '../../components/our_team/our_team_widget.desktop.dart';
 

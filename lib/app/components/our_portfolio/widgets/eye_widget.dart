@@ -1,6 +1,8 @@
+import 'package:fivr_landing_page/app/components/technology_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../../core/core.dart';
 
@@ -18,7 +20,11 @@ class EyeWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           AspectRatio(
-            aspectRatio: 414 / 262,
+            aspectRatio: getValueForScreenType(
+              context: context,
+              mobile: 414 / 262,
+              tablet: 833 / 480,
+            ),
             child: Image.asset(
               'assets/images/eye.png',
               width: double.infinity,
@@ -28,21 +34,21 @@ class EyeWidget extends StatelessWidget {
               scale: 2,
             ),
           ),
-          const SizedBox(height: 28),
+          // const SizedBox(height: 28),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: getValueForScreenType(
+              context: context,
+              mobile:
+                  const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 28),
+              tablet: const EdgeInsets.only(top: 110, left: 46, right: 36),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'Technology',
-                  style: GoogleFonts.bebasNeue(
-                    color: Colors.white,
-                    fontSize: 35,
-                    height: 1.4,
-                    letterSpacing: .5,
-                  ),
+                const TechnologyText(
+                  textColor: Colors.white,
+                  fontSize: 35,
                 ),
                 Image.asset(
                   'assets/images/segment logo small.png',
@@ -53,17 +59,30 @@ class EyeWidget extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              bottom: 30,
-              right: 12,
-              top: 10,
+            padding: getValueForScreenType(
+              context: context,
+              mobile: const EdgeInsets.only(
+                left: 20,
+                bottom: 30,
+                right: 12,
+                top: 10,
+              ),
+              tablet: const EdgeInsets.only(
+                left: 46,
+                bottom: 46,
+                right: 72,
+                top: 10,
+              ),
             ),
             child: Text(
               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
               style: GoogleFonts.roboto(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: getValueForScreenType(
+                  context: context,
+                  mobile: 18,
+                  tablet: 20,
+                ),
               ),
             ),
           ),
