@@ -43,8 +43,8 @@ class FooterWidgetMobileTablet extends HookConsumerWidget {
                     Theme(
                       data: ThemeData(primaryColor: Colors.white),
                       child: TextField(
-                        style: TextStyle(
-                          fontSize: 25.sp,
+                        style: const TextStyle(
+                          fontSize: 25,
                           color: Colors.white,
                         ),
                         decoration: InputDecoration(

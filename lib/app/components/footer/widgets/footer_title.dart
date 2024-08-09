@@ -20,12 +20,16 @@ class FooterTitles extends HookConsumerWidget {
       children: [
         InkWell(
           onTap: () async {
-            await controller.position.ensureVisible(
-              AppKeys.focusKey.currentContext?.findAncestorRenderObjectOfType()
-                  as RenderObject,
-              duration: 600.milliseconds,
-              curve: Curves.fastEaseInToSlowEaseOut,
-            );
+            try {
+              await controller.position.ensureVisible(
+                AppKeys.focusKey.currentContext
+                    ?.findAncestorRenderObjectOfType() as RenderObject,
+                duration: 600.milliseconds,
+                curve: Curves.fastEaseInToSlowEaseOut,
+              );
+            } on Exception catch (e, st) {
+              log("message", error: e, stackTrace: st);
+            }
           },
           child: const Text(
             'Focus Areas',
@@ -33,13 +37,17 @@ class FooterTitles extends HookConsumerWidget {
           ),
         ),
         InkWell(
-          onTap: () {
-            controller.position.ensureVisible(
-              AppKeys.promiseKey.currentContext?.findRenderObject()
-                  as RenderObject,
-              duration: 300.milliseconds,
-              curve: Curves.fastEaseInToSlowEaseOut,
-            );
+          onTap: () async {
+            try {
+              await controller.position.ensureVisible(
+                AppKeys.promiseKey.currentContext?.findRenderObject()
+                    as RenderObject,
+                duration: 600.milliseconds,
+                curve: Curves.fastEaseInToSlowEaseOut,
+              );
+            } on Exception catch (e, st) {
+              log("message", error: e, stackTrace: st);
+            }
           },
           child: const Text(
             'Our Promise',
@@ -66,12 +74,16 @@ class FooterTitles extends HookConsumerWidget {
         ),
         InkWell(
           onTap: () async {
-            await controller.position.ensureVisible(
-              AppKeys.portfolioKey.currentContext
-                  ?.findAncestorRenderObjectOfType() as RenderObject,
-              duration: 600.milliseconds,
-              curve: Curves.fastEaseInToSlowEaseOut,
-            );
+            try {
+              await controller.position.ensureVisible(
+                AppKeys.portfolioKey.currentContext
+                    ?.findAncestorRenderObjectOfType() as RenderObject,
+                duration: 600.milliseconds,
+                curve: Curves.fastEaseInToSlowEaseOut,
+              );
+            } on Exception catch (e, st) {
+              log("message", error: e, stackTrace: st);
+            }
           },
           child: const Text(
             'Portfolio',
