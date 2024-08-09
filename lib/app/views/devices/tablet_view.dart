@@ -4,8 +4,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/core.dart';
 import '../../application/provider.dart';
 import '../../components/common_gradient_bg.dart';
+import '../../components/focus/focus_widget.tablet.dart';
 import '../../components/footer/footer_widget.mobile.dart';
+import '../../components/hero/hero_section.tablet.dart';
 import '../../components/join_us/join_us_widget.mobile.dart';
+import '../../components/mission_vision/mission_vision.tablet.dart';
 import '../../components/our_portfolio/our_portfolio_widget.mobile.tablet.dart';
 import '../../components/our_portfolio/widgets/widgets.dart';
 import '../../components/our_team/our_team_widget.mobile.tablet.dart';
@@ -21,11 +24,11 @@ class TabletView extends HookConsumerWidget {
         child: ListView(
           controller: controller,
           children: [
-            //   const HeroSectionTablet(),
-            //   vGap(context),
-            //   const MissionVisionTabletWidget(),
-            //   vGap(context),
-            //   const FocusTabletWidget(),
+            const HeroSectionTablet(),
+            vGap(context),
+            const MissionVisionTabletWidget(),
+            vGap(context),
+            const FocusTabletWidget(),
             vGap(context),
             CommonGradientBgMobile(
               child: Column(
