@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/core.dart';
 import '../logo_widget.dart';
-import 'vertical_menu.desktop.dart';
+import 'vertical_menu.desktop.tablet.dart';
 import 'widgets/widgets.dart';
 
 const slideTime = 1000;
@@ -185,7 +185,7 @@ class _HeroSectionState extends ConsumerState<HeroSectionTablet>
                   ),
             ),
             hGap(context),
-            const VerticalTextMenuDesktop(),
+            const VerticalTextMenuDesktopTablet(),
           ],
         ),
       );

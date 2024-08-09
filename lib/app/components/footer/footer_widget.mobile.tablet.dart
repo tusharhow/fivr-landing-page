@@ -8,8 +8,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'widgets/widgets.dart';
 
-class FooterWidgetMobile extends HookConsumerWidget {
-  const FooterWidgetMobile({super.key});
+class FooterWidgetMobileTablet extends HookConsumerWidget {
+  const FooterWidgetMobileTablet({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,6 +19,7 @@ class FooterWidgetMobile extends HookConsumerWidget {
       ),
       child: AnimatedBox(
         detectedKey: "FOOTER",
+        tigerPoint: 0,
         builder: (con, visible) => !visible
             ? const SizedBox()
             : Container(
@@ -77,7 +78,9 @@ class FooterWidgetMobile extends HookConsumerWidget {
                     const FooterTitles(),
                     const SizedBox(height: 44),
                     const FooterIcons(),
-                    const FooterDisclaimer()
+                    const SizedBox(height: 80),
+                    const FooterDisclaimer(),
+                    const SizedBox(height: 40),
                   ],
                 ),
               ).animate().slideY(begin: 1, end: 0),

@@ -76,9 +76,9 @@ class OurTeamMobileTabletWidget extends HookConsumerWidget {
       detectedKey: 'OUR TEAM TITLE',
       builder: (con, visible) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        key: AppKeys.teamKey,
         children: [
           Padding(
+            key: AppKeys.teamKey,
             padding: getValueForScreenType(
               context: context,
               mobile: const EdgeInsets.only(

@@ -17,12 +17,12 @@ class MissionVisionTabletWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
-      key: AppKeys.promiseKey,
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
+          key: AppKeys.promiseKey,
           height: 392,
           child: AnimatedBox(
             detectedKey: 'TOP-1',

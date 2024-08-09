@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/utils/app_keys.dart';
 import '../hoverable_container.dart';
 
 class FocusTabletWidget extends StatelessWidget {
@@ -15,6 +16,7 @@ class FocusTabletWidget extends StatelessWidget {
     final size = MediaQuery.sizeOf(context);
     return SizedBox(
       height: 860,
+      key: AppKeys.focusKey,
       child: AnimatedBox(
         detectedKey: "FOCUS",
         builder: (con, visible) => !visible

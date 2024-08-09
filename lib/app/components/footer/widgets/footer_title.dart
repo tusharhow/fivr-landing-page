@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fivr_landing_page/app/application/provider.dart';
 import 'package:fivr_landing_page/core/utils/app_keys.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +19,11 @@ class FooterTitles extends HookConsumerWidget {
       runSpacing: 25,
       children: [
         InkWell(
-          onTap: () {
-            controller.position.ensureVisible(
-              AppKeys.focusKey.currentContext?.findRenderObject()
+          onTap: () async {
+            await controller.position.ensureVisible(
+              AppKeys.focusKey.currentContext?.findAncestorRenderObjectOfType()
                   as RenderObject,
-              duration: 300.milliseconds,
+              duration: 600.milliseconds,
               curve: Curves.fastEaseInToSlowEaseOut,
             );
           },
@@ -45,13 +47,17 @@ class FooterTitles extends HookConsumerWidget {
           ),
         ),
         InkWell(
-          onTap: () {
-            controller.position.ensureVisible(
-              AppKeys.teamKey.currentContext?.findRenderObject()
-                  as RenderObject,
-              duration: 300.milliseconds,
-              curve: Curves.fastEaseInToSlowEaseOut,
-            );
+          onTap: () async {
+            try {
+              await controller.position.ensureVisible(
+                AppKeys.teamKey.currentContext?.findAncestorRenderObjectOfType()
+                    as RenderObject,
+                duration: 600.milliseconds,
+                curve: Curves.fastEaseInToSlowEaseOut,
+              );
+            } on Exception catch (e, st) {
+              log("message", error: e, stackTrace: st);
+            }
           },
           child: const Text(
             'Team',
@@ -59,11 +65,11 @@ class FooterTitles extends HookConsumerWidget {
           ),
         ),
         InkWell(
-          onTap: () {
-            controller.position.ensureVisible(
-              AppKeys.portfolioKey.currentContext?.findRenderObject()
-                  as RenderObject,
-              duration: 300.milliseconds,
+          onTap: () async {
+            await controller.position.ensureVisible(
+              AppKeys.portfolioKey.currentContext
+                  ?.findAncestorRenderObjectOfType() as RenderObject,
+              duration: 600.milliseconds,
               curve: Curves.fastEaseInToSlowEaseOut,
             );
           },

@@ -1,8 +1,9 @@
+import 'package:fivr_landing_page/app/components/technology_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../../core/core.dart';
 
@@ -21,12 +22,16 @@ class Road extends HookConsumerWidget {
           fit: BoxFit.cover,
         ),
       ),
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(getValueForScreenType(
+        context: context,
+        mobile: 20,
+        tablet: 40,
+      )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const SizedBox(height: 36),
+          const SizedBox(height: 13),
           Align(
             alignment: Alignment.centerRight,
             child: Image.asset(
@@ -35,25 +40,35 @@ class Road extends HookConsumerWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 150),
-          SelectableText(
-            'Technology',
-            style: GoogleFonts.bebasNeue(
-              color: Colors.white,
-              fontSize: 60,
-              letterSpacing: .5,
-              height: 1.6,
+          SizedBox(
+            height: getValueForScreenType(
+              context: context,
+              mobile: 150,
+              tablet: 220,
             ),
           ),
-          const SizedBox(height: 18),
-          const SelectableText(
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
+          TechnologyText(
+            fontSize: getValueForScreenType(
+              context: context,
+              mobile: 60,
+              tablet: 85,
+            ),
+            textColor: Colors.white,
+          ),
+          Padding(
+            padding: getValueForScreenType(
+              context: context,
+              mobile: const EdgeInsets.only(top: 9, bottom: 18),
+              tablet: const EdgeInsets.only(top: 8, bottom: 60),
+            ),
+            child: const SelectableText(
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
             ),
           ),
-          const SizedBox(height: 20),
         ],
       ),
     )
