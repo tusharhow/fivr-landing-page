@@ -30,11 +30,11 @@ class AnimatedBox extends HookConsumerWidget {
       onVisibilityChanged: (visibilityInfo) {
         // log("${visibilityInfo.key} ${visibilityInfo.visibleFraction} $isVisible");
         if (visibilityInfo.visibleFraction > (tigerPoint ?? 0.1)) {
-          controller.forward();
+          // controller.forward();
 
           isVisible.value = true;
         } else {
-          controller.reset();
+          // controller.reset();
 
           isVisible.value = false;
         }

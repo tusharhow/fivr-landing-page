@@ -18,12 +18,12 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
-      key: AppKeys.promiseKey,
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
+          key: AppKeys.promiseKey,
           height: 580,
           child: AnimatedBox(
             detectedKey: 'TOP-1',

@@ -1,5 +1,6 @@
 import 'package:fivr_landing_page/app/components/animated_box.dart';
 import 'package:fivr_landing_page/core/theme/app_colors.dart';
+import 'package:fivr_landing_page/core/utils/app_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,6 +15,7 @@ class FocusMobileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return SizedBox(
+      key: AppKeys.focusKey,
       height: 850,
       child: AnimatedBox(
         detectedKey: "FOCUS-1",

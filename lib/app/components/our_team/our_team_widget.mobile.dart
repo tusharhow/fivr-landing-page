@@ -9,15 +9,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../models/user_model.dart';
-import '../tem_member_card.dart';
+import 'widgets/tem_member_card.mobile.dart';
 
 class OurTeamMobileWidget extends HookConsumerWidget {
   const OurTeamMobileWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final size = MediaQuery.sizeOf(context);
-
     final scrollController = useScrollController();
 
     final List<User> users = [
@@ -60,7 +58,7 @@ class OurTeamMobileWidget extends HookConsumerWidget {
 
     void scrollLeft() {
       scrollController.animateTo(
-        scrollController.offset - 284,
+        scrollController.offset - 370,
         duration: const Duration(milliseconds: 800),
         curve: Curves.fastOutSlowIn,
       );
@@ -68,139 +66,132 @@ class OurTeamMobileWidget extends HookConsumerWidget {
 
     void scrollRight() {
       scrollController.animateTo(
-        scrollController.offset + 284,
+        scrollController.offset + 370,
         duration: const Duration(milliseconds: 800),
         curve: Curves.fastOutSlowIn,
       );
     }
 
-    return Column(
-      children: [
-        //, Our Team
-        AnimatedBox(
-          detectedKey: 'OUR TEAM TITLE',
-          builder: (con, visible) => Column(
-            children: [
-              Row(
-                key: AppKeys.teamKey,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 130,
-                      top: 136,
-                    ),
-                    child: !visible
-                        ? const SizedBox()
-                        : SelectableText(
-                            'Our Team',
-                            style: GoogleFonts.bebasNeue(fontSize: 80.sp),
-                          )
-                            .animate()
-                            .scaleX(
-                                alignment: Alignment.centerLeft,
-                                duration: 600.milliseconds)
-                            .slideX(),
-                  ),
-                  600.horizontalSpace,
-                  Expanded(
-                    child: !visible
-                        ? const SizedBox()
-                        : Padding(
-                            padding: EdgeInsets.only(top: 136.h),
-                            child: SelectableText.rich(
-                              TextSpan(
-                                text: "                                ",
-                                children: const [
-                                  TextSpan(
-                                    text:
-                                        "We're engineers, designers, strategists, and problem-solvers, united by a common goal: to deliver impactful technology solutions.",
-                                    mouseCursor: SystemMouseCursors.text,
-                                  ),
-                                ],
-                                style: GoogleFonts.roboto(
-                                  fontSize: 35.sp,
-                                  height: 1.6,
-                                ),
-                                mouseCursor: SystemMouseCursors.text,
-                              ),
-                            ).animate().fadeIn(),
-                          ),
-                  ),
-                  140.horizontalSpace,
-                ],
-              ),
-
-              //, Arrows
-              Padding(
-                padding: const EdgeInsets.only(right: 156),
-                child: !visible
-                    ? SizedBox(height: 15.h)
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              scrollLeft();
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.all(8.w),
-                              child: SvgPicture.asset(
-                                'assets/icons/left_arrow.svg',
-                                height: 15.h,
-                                width: 15.w,
-                              ),
-                            ),
-                          ),
-                          16.horizontalSpace,
-                          InkWell(
-                            onTap: () {
-                              scrollRight();
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.all(8.w),
-                              child: SvgPicture.asset(
-                                'assets/icons/right_arrow.svg',
-                                height: 15.h,
-                                width: 15.w,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                        .animate()
-                        .fadeIn()
-                        .scaleX(
-                            alignment: Alignment.centerRight,
-                            duration: 600.milliseconds)
-                        .slideX(begin: 1, end: 0),
-              ),
-            ],
-          ),
-        ),
-
-        45.verticalSpace,
-        AnimatedBox(
-          detectedKey: 'OUR TEAM USERS',
-          builder: (con, visible) => AspectRatio(
-            aspectRatio: 1920 / 420,
+    return AnimatedBox(
+      detectedKey: 'OUR TEAM TITLE',
+      builder: (con, visible) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        key: AppKeys.teamKey,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              top: 66,
+            ),
             child: !visible
-                ? const SizedBox(height: 15)
-                : ListView.separated(
+                ? const SizedBox(height: 80)
+                : Text(
+                    'Our Team',
+                    style: GoogleFonts.bebasNeue(fontSize: 60),
+                  )
+                    .animate()
+                    .scaleX(
+                      alignment: Alignment.centerLeft,
+                      duration: 600.milliseconds,
+                    )
+                    .slideX(),
+          ),
+          const SizedBox(height: 15),
+          !visible
+              ? const SizedBox(height: 30)
+              : Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 10),
+                  child: Text.rich(
+                    TextSpan(
+                      text: "                                ",
+                      children: const [
+                        TextSpan(
+                          text:
+                              "We're engineers, designers, strategists, and problem-solvers, united by a common goal: to deliver impactful technology solutions.",
+                          mouseCursor: SystemMouseCursors.text,
+                        ),
+                      ],
+                      style: GoogleFonts.roboto(
+                        fontSize: 24,
+                        height: 1.4,
+                      ),
+                    ),
+                  ).animate().fadeIn(),
+                ),
+          const SizedBox(height: 32),
+
+          //, Arrows
+          Padding(
+            padding: const EdgeInsets.only(right: 22),
+            child: !visible
+                ? const SizedBox(height: 30)
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          scrollLeft();
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(8.w),
+                          child: SvgPicture.asset(
+                            'assets/icons/left_arrow.svg',
+                            height: 15.h,
+                            width: 15.w,
+                          ),
+                        ),
+                      ),
+                      16.horizontalSpace,
+                      InkWell(
+                        onTap: () {
+                          scrollRight();
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(8.w),
+                          child: SvgPicture.asset(
+                            'assets/icons/right_arrow.svg',
+                            height: 15.h,
+                            width: 15.w,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                    .animate()
+                    .fadeIn()
+                    .scaleX(
+                        alignment: Alignment.centerRight,
+                        duration: 600.milliseconds)
+                    .slideX(begin: 1, end: 0),
+          ),
+          const SizedBox(height: 25),
+          SizedBox(
+            height: 490,
+            child: !visible
+                ? const SizedBox(height: 490)
+                : ListView(
                     controller: scrollController,
                     scrollDirection: Axis.horizontal,
-                    itemCount: users.length,
-                    itemBuilder: (context, index) {
-                      final user = users[index];
-                      return TeamMemberCard(user: user);
-                    },
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 64),
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    children: List.generate(
+                      users.length,
+                      (index) {
+                        final user = users[index];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: TeamMemberCardMobile(user: user),
+                        );
+                      },
+                    )
+                        .animate(
+                            delay: 100.milliseconds, interval: 100.milliseconds)
+                        .flipH()
+                        .scale()
+                        .fadeIn(),
                   ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

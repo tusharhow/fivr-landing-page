@@ -1,4 +1,5 @@
 import 'package:fivr_landing_page/app/components/focus/focus_widget.desktop.dart';
+import 'package:fivr_landing_page/app/components/hero/hero_section.desktop.dart';
 import 'package:fivr_landing_page/app/components/mission_vision/mission_vision.desktop.dart';
 import 'package:fivr_landing_page/core/core.dart';
 import 'package:flutter/material.dart';
@@ -8,15 +9,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import '../../application/provider.dart';
 import '../../components/common_gradient_bg.dart';
-import '../../components/footer_widget.dart';
-import '../../components/join_us_widget.dart';
+import '../../components/footer/footer_widget.desktop.dart';
+import '../../components/join_us/join_us_widget.desktop.dart';
 import '../../components/our_portfolio/our_portfolio_widget.desktop.dart';
 import '../../components/our_team/our_team_widget.desktop.dart';
-
-final mainScrollerController = Provider.autoDispose<ScrollController>(
-  (ref) => ScrollController(),
-);
 
 class DesktopView extends StatefulHookConsumerWidget {
   const DesktopView({super.key});
@@ -63,7 +61,7 @@ class _DesktopViewState extends ConsumerState<DesktopView>
             // mainAxisSize: MainAxisSize.max,
             // shrinkWrap: false,
             children: [
-              // const HeroSection(),
+              const HeroSectionDesktop(),
               // SizedBox(height: size.height),
               vGap(context),
               const MissionVisionDesktopWidget(),
@@ -78,8 +76,8 @@ class _DesktopViewState extends ConsumerState<DesktopView>
                   ],
                 ),
               ),
-              const JoinUsWidget(),
-              const FooterWidget(),
+              const JoinUsWidgetDesktop(),
+              const FooterWidgetDesktop(),
             ],
           ),
         ),
