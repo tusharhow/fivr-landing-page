@@ -3,16 +3,16 @@ import 'package:fivr_landing_page/core/utils/app_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../models/user_model.dart';
+import 'widgets/arrows.dart';
 import 'widgets/tem_member_card.mobile.dart';
 
-class OurTeamMobileWidget extends HookConsumerWidget {
-  const OurTeamMobileWidget({super.key});
+class OurTeamMobileTabletWidget extends HookConsumerWidget {
+  const OurTeamMobileTabletWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -79,9 +79,17 @@ class OurTeamMobileWidget extends HookConsumerWidget {
         key: AppKeys.teamKey,
         children: [
           Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              top: 66,
+            padding: getValueForScreenType(
+              context: context,
+              mobile: const EdgeInsets.only(
+                left: 20,
+                top: 66,
+              ),
+              tablet: const EdgeInsets.only(
+                left: 36,
+                top: 56,
+                right: 36,
+              ),
             ),
             child: !visible
                 ? const SizedBox(height: 80)
@@ -100,7 +108,13 @@ class OurTeamMobileWidget extends HookConsumerWidget {
           !visible
               ? const SizedBox(height: 30)
               : Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 10),
+                  padding: getValueForScreenType(
+                    context: context,
+                    mobile:
+                        const EdgeInsets.only(left: 20, top: 66, bottom: 32),
+                    tablet: const EdgeInsets.only(
+                        left: 36, top: 16, right: 42, bottom: 75),
+                  ),
                   child: Text.rich(
                     TextSpan(
                       text: "                                ",
@@ -118,53 +132,18 @@ class OurTeamMobileWidget extends HookConsumerWidget {
                     ),
                   ).animate().fadeIn(),
                 ),
-          const SizedBox(height: 32),
 
           //, Arrows
-          Padding(
-            padding: const EdgeInsets.only(right: 22),
-            child: !visible
-                ? const SizedBox(height: 30)
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          scrollLeft();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(8.w),
-                          child: SvgPicture.asset(
-                            'assets/icons/left_arrow.svg',
-                            height: 15.h,
-                            width: 15.w,
-                          ),
-                        ),
-                      ),
-                      16.horizontalSpace,
-                      InkWell(
-                        onTap: () {
-                          scrollRight();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(8.w),
-                          child: SvgPicture.asset(
-                            'assets/icons/right_arrow.svg',
-                            height: 15.h,
-                            width: 15.w,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                    .animate()
-                    .fadeIn()
-                    .scaleX(
-                        alignment: Alignment.centerRight,
-                        duration: 600.milliseconds)
-                    .slideX(begin: 1, end: 0),
+          Arrows(
+            visible: visible,
+            scrollLeft: () {
+              scrollLeft();
+            },
+            scrollRight: () {
+              scrollRight();
+            },
           ),
-          const SizedBox(height: 25),
+
           SizedBox(
             height: 490,
             child: !visible

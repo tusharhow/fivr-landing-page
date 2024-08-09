@@ -13,9 +13,9 @@ import '../../components/hero/vertical_menu.mobile.dart';
 import '../../components/join_us/join_us_widget.mobile.dart';
 import '../../components/logo_widget.dart';
 import '../../components/mission_vision/mission_vision.mobile.dart';
-import '../../components/our_portfolio/our_portfolio_widget.mobile.dart';
+import '../../components/our_portfolio/our_portfolio_widget.mobile.tablet.dart';
 import '../../components/our_portfolio/widgets/widgets.dart';
-import '../../components/our_team/our_team_widget.mobile.dart';
+import '../../components/our_team/our_team_widget.mobile.tablet.dart';
 
 class MobileView extends HookConsumerWidget {
   const MobileView({super.key});
@@ -113,8 +113,8 @@ class MobileView extends HookConsumerWidget {
           CommonGradientBgMobile(
             child: Column(
               children: [
-                const OurTeamMobileWidget(),
-                const OurPortfolioMobileWidget(),
+                const OurTeamMobileTabletWidget(),
+                const OurPortfolioMobileTabletWidget(),
                 vGap(context),
               ],
             ),
