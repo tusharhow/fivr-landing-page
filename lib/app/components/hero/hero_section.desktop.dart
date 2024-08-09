@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/core.dart';
@@ -184,7 +183,7 @@ class _HeroSectionState extends ConsumerState<HeroSectionDesktop>
                     callback: (value) => isComplete.value = true,
                   ),
             ),
-            10.horizontalSpace,
+            hGap(context),
             const VerticalTextMenuDesktop(),
           ],
         ),

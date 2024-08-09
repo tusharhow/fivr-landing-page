@@ -1,9 +1,12 @@
 import 'package:fivr_landing_page/app/components/animated_box.dart';
+import 'package:fivr_landing_page/app/components/footer/widgets/footer_disclaimer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'widgets/widgets.dart';
 
 class FooterWidgetMobile extends HookConsumerWidget {
   const FooterWidgetMobile({super.key});
@@ -74,98 +77,11 @@ class FooterWidgetMobile extends HookConsumerWidget {
                     const FooterTitles(),
                     const SizedBox(height: 44),
                     const FooterIcons(),
-                    const SizedBox(height: 80),
-                    const SelectableText(
-                      '© 2024FivR. ALL RIGHTS',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
-                    const SizedBox(height: 8),
-                    const SelectableText(
-                      'Privacy  |  TERMS & CONDITIONS',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
+                    const FooterDisclaimer()
                   ],
                 ),
               ).animate().slideY(begin: 1, end: 0),
       ),
-    );
-  }
-}
-
-class FooterIcons extends StatelessWidget {
-  const FooterIcons({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 8,
-      children: [
-        Image.asset(
-          'assets/images/youtube.png',
-          width: 48,
-          height: 48,
-        ),
-        Image.asset(
-          'assets/images/telegram.png',
-          width: 48,
-          height: 48,
-        ),
-        Image.asset(
-          'assets/images/instagram.png',
-          width: 48,
-          height: 48,
-        ),
-        Image.asset(
-          'assets/images/facebook.png',
-          width: 48,
-          height: 48,
-        ),
-        Image.asset(
-          'assets/images/linkedin.png',
-          width: 48,
-          height: 48,
-        ),
-      ]
-          .animate(delay: 400.milliseconds, interval: 100.milliseconds)
-          .fadeIn()
-          .scaleY(),
-    );
-  }
-}
-
-class FooterTitles extends StatelessWidget {
-  const FooterTitles({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 45,
-      runSpacing: 25,
-      children: [
-        const SelectableText(
-          'Focus Areas',
-          style: TextStyle(fontSize: 18, color: Colors.white),
-        ),
-        const SelectableText(
-          'Our Promise',
-          style: TextStyle(fontSize: 18, color: Colors.white),
-        ),
-        const SelectableText(
-          'Team',
-          style: TextStyle(fontSize: 18, color: Colors.white),
-        ),
-        const SelectableText(
-          'Portfolio',
-          style: TextStyle(fontSize: 18, color: Colors.white),
-        ),
-      ]
-          .animate(delay: 400.milliseconds, interval: 100.milliseconds)
-          .fadeIn()
-          .slideX(),
     );
   }
 }
