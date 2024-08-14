@@ -44,6 +44,7 @@ dependencies:
   flutter_hooks: ^0.20.5
   flutter_screenutil: ^5.9.3
   responsive_builder: ^0.7.1
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

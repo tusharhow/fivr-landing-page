@@ -19,6 +19,7 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
       aspectRatio: 1920 / 800,
       child: AnimatedBox(
         detectedKey: 'Top',
+        tigerPoint: 0,
         builder: (con, visible) => Row(
           key: AppKeys.promiseKey,
           crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -10,9 +10,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/core.dart';
 import '../../application/provider.dart';
 
-final selectedMenuProvider = StateProvider<int?>((ref) {
-  return null;
-});
 
 class VerticalTextMenuMobile extends HookConsumerWidget {
   const VerticalTextMenuMobile({

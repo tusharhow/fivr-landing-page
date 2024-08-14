@@ -15,7 +15,12 @@ final selectedMenuProvider = StateProvider<int?>((ref) {
 });
 
 class VerticalTextMenuDesktopTablet extends HookConsumerWidget {
-  const VerticalTextMenuDesktopTablet({super.key});
+  const VerticalTextMenuDesktopTablet({
+    super.key,
+    required this.rowKey,
+  });
+
+  final GlobalKey rowKey;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -38,113 +43,110 @@ class VerticalTextMenuDesktopTablet extends HookConsumerWidget {
       ),
       height: double.infinity,
       // padding: const EdgeInsets.symmetric(vertical: 116),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            RotatedBox(
-              quarterTurns: 3,
-              child: InkWell(
-                onTap: () async {
-                  await controller.position.ensureVisible(
-                    AppKeys.portfolioKey.currentContext
-                        ?.findAncestorRenderObjectOfType() as RenderObject,
-                    duration: 600.milliseconds,
-                    curve: Curves.fastEaseInToSlowEaseOut,
-                  );
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          RotatedBox(
+            quarterTurns: 3,
+            child: InkWell(
+              onTap: () async {
+                await controller.position.ensureVisible(
+                  AppKeys.portfolioKey.currentContext
+                      ?.findAncestorRenderObjectOfType() as RenderObject,
+                  duration: 600.milliseconds,
+                  curve: Curves.fastEaseInToSlowEaseOut,
+                );
 
-                  ref.read(selectedMenuProvider.notifier).update((state) => 0);
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.w),
-                  child: Text(
-                    'PORTFOLIO',
-                    style: sideMenuTextStyle.copyWith(
-                        color: menuIndex == 0 ? Colors.white : null),
-                  ),
+                ref.read(selectedMenuProvider.notifier).update((state) => 0);
+              },
+              child: Padding(
+                padding: EdgeInsets.all(8.w),
+                child: Text(
+                  'PORTFOLIO',
+                  style: sideMenuTextStyle.copyWith(
+                      color: menuIndex == 0 ? Colors.white : null),
                 ),
               ),
             ),
-            // const SizedBox(height: 35),
-            RotatedBox(
-              quarterTurns: 3,
-              child: InkWell(
-                onTap: () async {
-                  await controller.position.ensureVisible(
-                    AppKeys.teamKey.currentContext
-                        ?.findAncestorRenderObjectOfType() as RenderObject,
-                    duration: 600.milliseconds,
-                    curve: Curves.fastEaseInToSlowEaseOut,
-                  );
+          ),
+          // const SizedBox(height: 35),
+          RotatedBox(
+            quarterTurns: 3,
+            child: InkWell(
+              onTap: () async {
+                await controller.position.ensureVisible(
+                  AppKeys.teamKey.currentContext
+                      ?.findAncestorRenderObjectOfType() as RenderObject,
+                  duration: 600.milliseconds,
+                  curve: Curves.fastEaseInToSlowEaseOut,
+                );
 
-                  ref.read(selectedMenuProvider.notifier).update((state) => 1);
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.w),
-                  child: Text(
-                    'TEAM',
-                    style: sideMenuTextStyle.copyWith(
-                        color: menuIndex == 1 ? Colors.white : null),
-                  ),
+                ref.read(selectedMenuProvider.notifier).update((state) => 1);
+              },
+              child: Padding(
+                padding: EdgeInsets.all(8.w),
+                child: Text(
+                  'TEAM',
+                  style: sideMenuTextStyle.copyWith(
+                      color: menuIndex == 1 ? Colors.white : null),
                 ),
               ),
             ),
+          ),
 
-            // const SizedBox(height: 35),
-            RotatedBox(
-              quarterTurns: 3,
-              child: InkWell(
-                onTap: () async {
-                  await controller.position.ensureVisible(
-                    AppKeys.focusKey.currentContext
-                        ?.findAncestorRenderObjectOfType() as RenderObject,
-                    duration: 600.milliseconds,
-                    curve: Curves.fastEaseInToSlowEaseOut,
-                  );
+          // const SizedBox(height: 35),
+          RotatedBox(
+            quarterTurns: 3,
+            child: InkWell(
+              onTap: () async {
+                await controller.position.ensureVisible(
+                  AppKeys.focusKey.currentContext
+                      ?.findAncestorRenderObjectOfType() as RenderObject,
+                  duration: 600.milliseconds,
+                  curve: Curves.fastEaseInToSlowEaseOut,
+                );
 
-                  ref.read(selectedMenuProvider.notifier).update((state) => 2);
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.w),
-                  child: Text(
-                    'FOCUS AREAS',
-                    style: sideMenuTextStyle.copyWith(
-                        color: menuIndex == 2 ? Colors.white : null),
-                  ),
-                ),
-              ),
-            ), // const SizedBox(height: 35),
-            RotatedBox(
-              quarterTurns: 3,
-              child: InkWell(
-                onTap: () async {
-                  await controller.position.ensureVisible(
-                    AppKeys.promiseKey.currentContext
-                        ?.findAncestorRenderObjectOfType() as RenderObject,
-                    duration: 600.milliseconds,
-                    curve: Curves.fastEaseInToSlowEaseOut,
-                  );
-
-                  ref.read(selectedMenuProvider.notifier).update((state) => 3);
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.w),
-                  child: Text(
-                    'OUR PROMISE',
-                    style: sideMenuTextStyle.copyWith(
-                        color: menuIndex == 3 ? Colors.white : null),
-                  ),
+                ref.read(selectedMenuProvider.notifier).update((state) => 2);
+              },
+              child: Padding(
+                padding: EdgeInsets.all(8.w),
+                child: Text(
+                  'FOCUS AREAS',
+                  style: sideMenuTextStyle.copyWith(
+                      color: menuIndex == 2 ? Colors.white : null),
                 ),
               ),
             ),
-          ]
-              .animate(
-                  delay: (preTime + 800).milliseconds,
-                  interval: 200.milliseconds)
-              .fadeIn()
-              .scaleY(alignment: Alignment.topCenter),
-        ),
+          ), // const SizedBox(height: 35),
+          RotatedBox(
+            quarterTurns: 3,
+            child: InkWell(
+              onTap: () async {
+                await controller.position.ensureVisible(
+                  AppKeys.promiseKey.currentContext
+                      ?.findAncestorRenderObjectOfType() as RenderObject,
+                  duration: 600.milliseconds,
+                  curve: Curves.fastEaseInToSlowEaseOut,
+                );
+
+                ref.read(selectedMenuProvider.notifier).update((state) => 3);
+              },
+              child: Padding(
+                padding: EdgeInsets.all(8.w),
+                child: Text(
+                  'OUR PROMISE',
+                  style: sideMenuTextStyle.copyWith(
+                      color: menuIndex == 3 ? Colors.white : null),
+                ),
+              ),
+            ),
+          ),
+        ]
+            .animate(
+                delay: (preTime + 800).milliseconds, interval: 200.milliseconds)
+            .fadeIn()
+            .scaleY(alignment: Alignment.topCenter),
       ),
     ).animate(delay: (preTime + 600).milliseconds).slideX(begin: 1, end: 0);
   }

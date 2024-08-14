@@ -1,18 +1,24 @@
+import 'dart:developer';
+
 import 'package:fivr_landing_page/app/components/hero/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../core/core.dart';
+import '../../../core/utils/app_keys.dart';
+import '../../application/provider.dart';
+import '../logo_widget.dart';
 
 const slideTime = 1000;
 const scaleTime = 300;
 
 /// 1000 + 300 = 1300 milliseconds
 const preTime = 1000;
+final mobileScrollCOntroller = ScrollController();
 
 class HeroSectionMobile extends StatefulHookConsumerWidget {
   const HeroSectionMobile({super.key});
@@ -133,59 +139,69 @@ class _HeroSectionState extends ConsumerState<HeroSectionMobile>
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final isComplete = useState<bool>(false);
-    return LayoutBuilder(builder: (context, constraints) {
-      return Container(
-        constraints: BoxConstraints(
-          maxHeight:
-              constraints.maxWidth <= 1536 ? size.height : size.height * .9,
-          minHeight: size.height * .9,
-        ),
-        child: Row(
-          key: globalKey,
-          children: [
-            Container(
-              width: 1.sw,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.purpleCorallites, //  Color(0xff2051FF),
-                    AppColors.purpleHeather, // Color(0xffCDD4F0),
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-              ),
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // SizedBox(height: size.height * 0.03),
-                  const SizedBox(height: 138),
-                  !isComplete.value ? const SizedBox() : const HeroTitle(),
-                  const SizedBox(height: 54),
-                  const HeroSubtitle(),
-                  const SizedBox(height: 42),
-                  const ContactUsBotton(),
-                ],
-              ),
-            )
-                .animate(delay: 700.milliseconds)
-                .show()
-                .then(delay: 100.milliseconds)
-                .fadeIn(duration: 600.milliseconds)
-                .scaleX(
-                  begin: 1.2,
-                  end: 1,
-                  alignment: Alignment.centerLeft,
-                )
-                .callback(
-                  callback: (value) => isComplete.value = true,
-                ),
+
+    return Container(
+      width: 1.sw,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            AppColors.purpleCorallites, //  Color(0xff2051FF),
+            AppColors.purpleHeather, // Color(0xffCDD4F0),
           ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
         ),
-      );
-    });
+      ),
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const LogoWidget(),
+              Padding(
+                padding: const EdgeInsets.only(top: 24, right: 20),
+                child: IconButton(
+                  onPressed: () {
+                    showFullWidthMenu(
+                      context,
+                      ref.watch(mainScrollerController),
+                      ref,
+                    );
+                  },
+                  icon: Image.asset(
+                    'assets/images/ham burger.png',
+                    width: 45,
+                    height: 24,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          // SizedBox(height: size.height * 0.03),
+          const SizedBox(height: 100),
+          HeroTitle(show: isComplete.value),
+          const SizedBox(height: 54),
+          HeroSubtitle(isComplete: isComplete.value),
+          const SizedBox(height: 42),
+          const ContactUsBotton(),
+        ],
+      ),
+    )
+        .animate(delay: 700.milliseconds)
+        .show()
+        .then(delay: 100.milliseconds)
+        .fadeIn(duration: 600.milliseconds)
+        .scaleX(
+          begin: 1.2,
+          end: 1,
+          alignment: Alignment.centerLeft,
+        )
+        .callback(
+          callback: (value) => isComplete.value = true,
+        );
   }
 
   @override
@@ -194,4 +210,114 @@ class _HeroSectionState extends ConsumerState<HeroSectionMobile>
     scaleAnimationController.dispose();
     super.dispose();
   }
+}
+
+void showFullWidthMenu(
+  BuildContext context,
+  ScrollController controller,
+  WidgetRef ref,
+) {
+  // showDialog(
+  //   context: context,
+  //   builder: (BuildContext context) {
+  //     return const MenuWidget();
+  //   },
+  // );
+
+  showMenu(
+    context: context,
+    position: const RelativeRect.fromLTRB(0, 0, 0, 00),
+    constraints: BoxConstraints(minWidth: 1.sw),
+    color: Colors.black,
+    items: [
+      PopupMenuItem(
+        child: const ListTile(
+          title: Text(
+            "Focus Areas",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        onTap: () async {
+          try {
+            await mobileScrollCOntroller.position.ensureVisible(
+              AppKeys.focusKey.currentContext?.findAncestorRenderObjectOfType()
+                  as RenderObject,
+              duration: 600.milliseconds,
+              curve: Curves.fastEaseInToSlowEaseOut,
+            );
+          } on Exception catch (e, st) {
+            log("message", error: e, stackTrace: st);
+          }
+
+          ref.read(selectedMenuProvider.notifier).update((state) => 0);
+        },
+      ),
+      PopupMenuItem(
+        child: const ListTile(
+          title: Text(
+            "Our Promise",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        onTap: () async {
+          try {
+            await mobileScrollCOntroller.position.ensureVisible(
+              AppKeys.promiseKey.currentContext
+                  ?.findAncestorRenderObjectOfType() as RenderObject,
+              duration: 600.milliseconds,
+              curve: Curves.fastEaseInToSlowEaseOut,
+            );
+          } on Exception catch (e, st) {
+            log("message", error: e, stackTrace: st);
+          }
+
+          ref.read(selectedMenuProvider.notifier).update((state) => 0);
+        },
+      ),
+      PopupMenuItem(
+        child: const ListTile(
+          title: Text(
+            "Team",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        onTap: () async {
+          try {
+            await mobileScrollCOntroller.position.ensureVisible(
+              AppKeys.teamKey.currentContext?.findAncestorRenderObjectOfType()
+                  as RenderObject,
+              duration: 600.milliseconds,
+              curve: Curves.fastEaseInToSlowEaseOut,
+            );
+          } on Exception catch (e, st) {
+            log("message", error: e, stackTrace: st);
+          }
+
+          ref.read(selectedMenuProvider.notifier).update((state) => 0);
+        },
+      ),
+      PopupMenuItem(
+        child: const ListTile(
+          title: Text(
+            "Portfolio",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        onTap: () async {
+          try {
+            await mobileScrollCOntroller.position.ensureVisible(
+              AppKeys.portfolioKey.currentContext
+                  ?.findAncestorRenderObjectOfType() as RenderObject,
+              duration: 600.milliseconds,
+              curve: Curves.fastEaseInToSlowEaseOut,
+            );
+          } on Exception catch (e, st) {
+            log("message", error: e, stackTrace: st);
+          }
+
+          ref.read(selectedMenuProvider.notifier).update((state) => 0);
+        },
+      ),
+    ],
+  );
 }
