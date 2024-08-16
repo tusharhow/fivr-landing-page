@@ -43,13 +43,13 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
                     ),
                     padding: const EdgeInsets.all(24),
                     alignment: Alignment.bottomCenter,
-                    child: Text.rich(
+                    child: SelectableText.rich(
                       const TextSpan(
                         text: '                     ',
                         children: [
                           TextSpan(
                             text:
-                                '"At FIVR, we are driven by the vision to revolutionize the way businesses operate across various sectors. Our mission is to deliver cutting-edge technology solutions that streamline logistics, enhance healthcare services, optimize financial operations, and transform educational experiences."',
+                                'At FIVR, we are driven by the vision to revolutionize the way businesses operate across various sectors. Our mission is to deliver cutting-edge technology solutions that streamline logistics, enhance healthcare services, optimize financial operations, and transform educational experiences.',
                           ),
                         ],
                       ),

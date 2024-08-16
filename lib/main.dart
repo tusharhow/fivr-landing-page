@@ -33,10 +33,12 @@ class MyApp extends StatelessWidget {
             ),
             useMaterial3: true,
           ),
-          home: ScreenTypeLayout.builder(
-            mobile: (context) => const MobileView(),
-            tablet: (context) => const TabletView(),
-            desktop: (context) => const DesktopView(),
+          home: SelectionArea(
+            child: ScreenTypeLayout.builder(
+              mobile: (context) => const MobileView(),
+              tablet: (context) => const TabletView(),
+              desktop: (context) => const DesktopView(),
+            ),
           ),
           // home: const Webpage(),
         ),

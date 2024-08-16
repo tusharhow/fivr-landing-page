@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fivr_landing_page/app/components/common_gradient_bg.dart';
 import 'package:fivr_landing_page/app/components/footer/footer_widget.mobile.tablet.dart';
 import 'package:fivr_landing_page/app/components/hero/hero_section.mobile.dart';
@@ -7,11 +9,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/core.dart';
+import '../../../core/utils/app_keys.dart';
 import '../../application/provider.dart';
 import '../../components/focus/focus_widget.mobile.dart';
 import '../../components/hero/vertical_menu.mobile.dart';
 import '../../components/join_us/join_us_widget.mobile.tablet.dart';
-import '../../components/logo_widget.dart';
 import '../../components/mission_vision/mission_vision.mobile.dart';
 import '../../components/our_portfolio/our_portfolio_widget.mobile.tablet.dart';
 import '../../components/our_portfolio/widgets/widgets.dart';
@@ -32,6 +34,7 @@ class MobileView extends HookConsumerWidget {
 
     useEffect(() {
       controller.addListener(listener);
+
       return () {
         controller.removeListener(listener);
       };
@@ -39,77 +42,15 @@ class MobileView extends HookConsumerWidget {
 
     return Scaffold(
       key: scaffoldKey,
-      body: CustomScrollView(
-        controller: controller,
-        slivers: [
-          SliverAppBar(
-            floating: false,
-            // snap: true,
-            pinned: false,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            shadowColor: Colors.transparent,
-            surfaceTintColor: Colors.transparent,
-            // toolbarHeight: 0,
-            leadingWidth: 108,
-            leading: const LogoWidget(),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(top: 24, right: 20),
-                child: IconButton(
-                  onPressed: () {
-                    scaffoldKey.currentState?.openEndDrawer();
-                  },
-                  icon: Image.asset(
-                    'assets/images/ham burger.png',
-                    width: 45,
-                    height: 24,
-                  ),
-                ),
-              ),
-            ],
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.purpleCorallites, //  Color(0xff2051FF),
-                    AppColors.purpleHeather, // Color(0xffCDD4F0),
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-              ),
-              // child: AppBar(
-              //   backgroundColor: Colors.transparent,
-              //   elevation: 0,
-              //   shadowColor: Colors.transparent,
-              //   surfaceTintColor: Colors.transparent,
-              //   leadingWidth: 108,
-              //   leading: Padding(
-              //     padding: const EdgeInsets.only(left: 34, top: 20, bottom: 12),
-              //     child: Image.asset(
-              //       'assets/images/FivR.png',
-              //       width: 108,
-              //     ),
-              //   ),
-              // ),
-            )
-                .animate(delay: 700.milliseconds)
-                .show()
-                .then(delay: 100.milliseconds)
-                .fadeIn(duration: 600.milliseconds)
-                .scaleX(
-                  begin: 1.2,
-                  end: 1,
-                  alignment: Alignment.centerLeft,
-                ),
-          ),
-          const SliverToBoxAdapter(child: HeroSectionMobile()),
-          vGap(context).toBoxSliver(),
-          const MissionVisionMobileWidget().toBoxSliver(),
-          vGap(context).toBoxSliver(),
-          const FocusMobileWidget().toBoxSliver(),
-          vGap(context).toBoxSliver(),
+      body: ListView(
+        controller: mobileScrollCOntroller,
+        children: [
+          const HeroSectionMobile(),
+          vGap(context),
+          const MissionVisionMobileWidget(),
+          vGap(context),
+          const FocusMobileWidget(),
+          vGap(context),
           CommonGradientBgMobile(
             child: Column(
               children: [
@@ -118,32 +59,23 @@ class MobileView extends HookConsumerWidget {
                 vGap(context),
               ],
             ),
-          ).toBoxSliver(),
-          const EyeWidget().toBoxSliver(),
-          vGapBlack(context).toBoxSliver(),
-          const NetflixTechWidget().toBoxSliver(),
-          vGapBlack(context).toBoxSliver(),
-          const FinanceWidget().toBoxSliver(),
-          vGapBlack(context).toBoxSliver(),
-          const PixiJS1().toBoxSliver(),
-          vGapBlack(context).toBoxSliver(),
-          const PixiJS2().toBoxSliver(),
-          vGapBlack(context).toBoxSliver(),
-          const Mosque().toBoxSliver(),
-          vGapBlack(context).toBoxSliver(),
-          const Road().toBoxSliver(),
-          vGap(context).toBoxSliver(),
-          const JoinUsWidgetMobileTablet().toBoxSliver(),
-          const FooterWidgetMobileTablet().toBoxSliver(),
-        ],
-      ),
-      endDrawer: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(width: 10, color: Colors.white),
-          VerticalTextMenuMobile(
-            scaffoldKey: scaffoldKey,
           ),
+          const EyeWidget(),
+          vGapBlack(context),
+          const NetflixTechWidget(),
+          vGapBlack(context),
+          const FinanceWidget(),
+          vGapBlack(context),
+          const PixiJS1(),
+          vGapBlack(context),
+          const PixiJS2(),
+          vGapBlack(context),
+          const Mosque(),
+          vGapBlack(context),
+          const Road(),
+          vGap(context),
+          const JoinUsWidgetMobileTablet(),
+          const FooterWidgetMobileTablet(),
         ],
       ),
       floatingActionButton: Padding(
@@ -160,6 +92,8 @@ class MobileView extends HookConsumerWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
     );
   }
+
+  
 }
 
 extension SliverX on Widget {

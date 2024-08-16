@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/core.dart';
@@ -134,13 +135,14 @@ class _HeroSectionState extends ConsumerState<HeroSectionDesktop>
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final isComplete = useState<bool>(false);
-    return LayoutBuilder(builder: (context, constraints) {
-      return Container(
-        constraints: BoxConstraints(
-          maxHeight:
-              constraints.maxWidth <= 1536 ? size.height : size.height * .9,
-          minHeight: size.height * .9,
-        ),
+    return Container(
+      constraints: const BoxConstraints(
+          // maxHeight:
+          //     constraints.maxWidth <= 1536 ? size.height : size.height * .9,
+          // minHeight: size.height * .9,
+          ),
+      child: AspectRatio(
+        aspectRatio: 1920.w / 961.h,
         child: Row(
           key: globalKey,
           children: [
@@ -156,18 +158,24 @@ class _HeroSectionState extends ConsumerState<HeroSectionDesktop>
                     end: Alignment.centerRight,
                   ),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const LogoWidget(),
-                    // SizedBox(height: size.height * 0.03),
-                    !isComplete.value ? const SizedBox() : const HeroTitle(),
-                    // SizedBox(height: size.height * 0.03),
-                    const HeroSubtitle(),
-                    // SizedBox(height: size.height * 0.07),
-                    const ContactUsBotton(),
-                  ],
+                child: Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const LogoWidget(),
+                      // SizedBox(height: size.height * 0.03),
+                      // SizedBox(height: 80.w),
+                      HeroTitle(show: isComplete.value),
+                      // SizedBox(height: 30.w),
+                      // SizedBox(height: size.height * 0.03),
+                      HeroSubtitle(isComplete: isComplete.value),
+                      // SizedBox(height: 50.w),
+                      // SizedBox(height: size.height * 0.07),
+                      const ContactUsBotton(),
+                      // SizedBox(height: 60.w),
+                    ],
+                  ),
                 ),
               )
                   .animate(delay: 700.milliseconds)
@@ -184,11 +192,11 @@ class _HeroSectionState extends ConsumerState<HeroSectionDesktop>
                   ),
             ),
             hGap(context),
-            const VerticalTextMenuDesktopTablet(),
+            VerticalTextMenuDesktopTablet(rowKey: globalKey),
           ],
         ),
-      );
-    });
+      ),
+    );
   }
 
   @override
