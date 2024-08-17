@@ -5,4 +5,5 @@ abstract class AppKeys {
   static final promiseKey = GlobalKey();
   static final teamKey = GlobalKey();
   static final portfolioKey = GlobalKey();
+  static final listViewKey = GlobalKey();
 }

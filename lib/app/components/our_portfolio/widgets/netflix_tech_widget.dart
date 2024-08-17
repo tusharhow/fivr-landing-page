@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -37,7 +38,7 @@ class NetflixTechWidget extends StatelessWidget {
                   right: 52,
                   bottom: 79,
                 )),
-            child: SelectableText(
+            child: AutoSizeText(
               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
               style: TextStyle(
                 fontSize: getValueForScreenType(
@@ -45,6 +46,17 @@ class NetflixTechWidget extends StatelessWidget {
                   mobile: 18,
                   tablet: 28,
                 ),
+              ),
+              maxFontSize: getValueForScreenType(
+                context: context,
+                mobile: 18,
+                tablet: 28,
+              ),
+              minFontSize: 6,
+              maxLines: getValueForScreenType(
+                context: context,
+                mobile: 6,
+                tablet: 5,
               ),
             ),
           ),
@@ -63,21 +75,20 @@ class _ForMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 56),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: EdgeInsets.only(right: 24),
+    return const Padding(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 36),
+          Align(
+            alignment: Alignment.centerRight,
             child: NetflixImage(),
           ),
-        ),
-        SizedBox(height: 120),
-        TechnologyText(),
-        SizedBox(height: 18),
-      ],
+          SizedBox(height: 120),
+          TechnologyText(fontSize: 60),
+        ],
+      ),
     );
   }
 }
@@ -94,8 +105,8 @@ class _ForTablet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          TechnologyText(),
-          NetflixImage(),
+          Expanded(child: TechnologyText(fontSize: 85)),
+          Expanded(child: NetflixImage(height: 67)),
         ],
       ),
     );

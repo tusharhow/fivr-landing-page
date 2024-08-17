@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fivr_landing_page/app/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -38,7 +39,7 @@ class TeamMemberCardState extends State<TeamMemberCard> {
               ),
             ),
             const SizedBox(height: 8),
-            SelectableText(
+            AutoSizeText(
               widget.user.name,
               style: GoogleFonts.bebasNeue(
                 fontSize: 20,
@@ -46,7 +47,7 @@ class TeamMemberCardState extends State<TeamMemberCard> {
                 letterSpacing: 3,
               ),
             ),
-            SelectableText(
+            AutoSizeText(
               widget.user.profession,
               style: GoogleFonts.roboto(
                 color: Colors.grey[300],

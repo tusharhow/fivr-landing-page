@@ -21,35 +21,33 @@ class HeroSubtitle extends StatelessWidget {
         tablet: EdgeInsets.only(left: 40, right: isComplete ? 70 : 0),
         mobile: const EdgeInsets.symmetric(horizontal: 28),
       ),
-      child: SelectionArea(
-        child: AutoSizeText.rich(
-          TextSpan(
-            text: '             ',
-            children: [
-              const TextSpan(
-                text: 'At FivR, we believe in the power of technology ',
-              ),
-              TextSpan(
-                text: 'to transform lives and industries.',
-                style: GoogleFonts.roboto(
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-          maxLines: getValueForScreenType(
-            context: context,
-            mobile: 3,
-            tablet: 2,
-            desktop: 2,
-          ),
-          style: GoogleFonts.roboto(
-            fontSize: getValueForScreenType(
-              context: context,
-              desktop: 38,
-              tablet: 28,
-              mobile: 24,
+      child: AutoSizeText.rich(
+        TextSpan(
+          text: '             ',
+          children: [
+            const TextSpan(
+              text: 'At FivR, we believe in the power of technology ',
             ),
+            TextSpan(
+              text: 'to transform lives and industries.',
+              style: GoogleFonts.roboto(
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+        maxLines: getValueForScreenType(
+          context: context,
+          mobile: 3,
+          tablet: 2,
+          desktop: 2,
+        ),
+        style: GoogleFonts.roboto(
+          fontSize: getValueForScreenType(
+            context: context,
+            desktop: 38,
+            tablet: 28,
+            mobile: 24,
           ),
         ),
       ),

@@ -73,7 +73,7 @@ class OurTeamMobileTabletWidget extends HookConsumerWidget {
     }
 
     return AnimatedBox(
-      detectedKey: 'OUR TEAM TITLE',
+      detectedKey: 'OUR TEAM TITLE MOB',
       builder: (con, visible) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

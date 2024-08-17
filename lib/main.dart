@@ -35,6 +35,11 @@ class MyApp extends StatelessWidget {
           ),
           home: SelectionArea(
             child: ScreenTypeLayout.builder(
+              breakpoints: const ScreenBreakpoints(
+                desktop: 834,
+                tablet: 414,
+                watch: 0,
+              ),
               mobile: (context) => const MobileView(),
               tablet: (context) => const TabletView(),
               desktop: (context) => const DesktopView(),

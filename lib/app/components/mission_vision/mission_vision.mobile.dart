@@ -1,10 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fivr_landing_page/app/components/animated_box.dart';
 import 'package:fivr_landing_page/core/theme/app_colors.dart';
 import 'package:fivr_landing_page/core/utils/app_keys.dart';
 import 'package:fivr_landing_page/core/utils/internal_gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -26,7 +26,7 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
           key: AppKeys.promiseKey,
           height: 580,
           child: AnimatedBox(
-            detectedKey: 'TOP-1',
+            detectedKey: 'MISSION-MOB-1',
             builder: (con, visible) => !visible
                 ? const SizedBox()
                 : Container(
@@ -43,7 +43,7 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
                     ),
                     padding: const EdgeInsets.all(24),
                     alignment: Alignment.bottomCenter,
-                    child: SelectableText.rich(
+                    child: AutoSizeText.rich(
                       const TextSpan(
                         text: '                     ',
                         children: [
@@ -61,6 +61,7 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
                         textBaseline: TextBaseline.alphabetic,
                       ),
                       textAlign: TextAlign.start,
+                      maxLines: 10,
                     ),
                   )
                     .animate()
@@ -81,7 +82,7 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
         SizedBox(
           height: 392,
           child: AnimatedBox(
-            detectedKey: 'TOP-2',
+            detectedKey: 'MISSION-MOB-2',
             builder: (con, visible) => !visible
                 ? const SizedBox()
                 : Container(
@@ -104,7 +105,7 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
                           children: [
                             const SquareBox(color: Colors.white),
                             const SizedBox(width: 22),
-                            Text(
+                            AutoSizeText(
                               'Our Mission',
                               style: GoogleFonts.bebasNeue(
                                 color: Colors.white,
@@ -114,8 +115,8 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
                             ),
                           ],
                         ),
-                        (16 * 2).verticalSpace,
-                        Text(
+                        const SizedBox(height: 32),
+                        AutoSizeText(
                           "At FivR, our mission is to drive innovation and efficiency across key sectors. We harness cutting-edge technology to solve complex challenges in logistics, healthcare, finance, and education. Our dedicated team works tirelessly to deliver scalable solutions that empower businesses and foster sustainable growth.",
                           style: GoogleFonts.roboto(
                             color: Colors.white,
@@ -144,7 +145,7 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
         SizedBox(
           height: 392,
           child: AnimatedBox(
-            detectedKey: 'TOP-3',
+            detectedKey: 'MISSION-MOB-3',
             builder: (con, visible) => !visible
                 ? const SizedBox()
                 : Container(
@@ -161,7 +162,7 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
                           children: [
                             const SquareBox(color: Colors.black),
                             const SizedBox(width: 22),
-                            Text(
+                            AutoSizeText(
                               'Our Vision',
                               style: GoogleFonts.bebasNeue(
                                 color: Colors.black,
@@ -171,8 +172,8 @@ class MissionVisionMobileWidget extends HookConsumerWidget {
                             ),
                           ],
                         ),
-                        (16 * 2).verticalSpace,
-                        Text(
+                        const SizedBox(height: 32),
+                        AutoSizeText(
                           "Our vision is to be the cornerstone of technological advancement, shaping the future of industry and commerce. We aim to create a world where seamless integration of technology solutions makes life easier, healthier, and more prosperous for all. ",
                           style: GoogleFonts.roboto(
                             color: Colors.black,

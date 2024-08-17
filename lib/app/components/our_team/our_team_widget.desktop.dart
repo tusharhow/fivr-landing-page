@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fivr_landing_page/app/components/animated_box.dart';
 import 'package:fivr_landing_page/core/utils/app_keys.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,6 @@ class OurTeamDesktopWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final size = MediaQuery.sizeOf(context);
-
     final scrollController = useScrollController();
 
     final List<User> users = [
@@ -78,38 +77,38 @@ class OurTeamDesktopWidget extends HookConsumerWidget {
       children: [
         //, Our Team
         AnimatedBox(
-          detectedKey: 'OUR TEAM TITLE',
+          detectedKey: 'OUR TEAM TITLE DEK',
           builder: (con, visible) => Column(
             children: [
-              Row(
-                key: AppKeys.teamKey,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 130,
-                      top: 136,
-                    ),
-                    child: !visible
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 136.w,
+                  left: 130.w,
+                  right: 140.w,
+                  bottom: 40,
+                ),
+                child: Row(
+                  key: AppKeys.teamKey,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    !visible
                         ? const SizedBox()
-                        : SelectableText(
+                        : AutoSizeText(
                             'Our Team',
-                            style: GoogleFonts.bebasNeue(fontSize: 80.sp),
+                            style: GoogleFonts.bebasNeue(fontSize: 80),
                           )
                             .animate()
                             .scaleX(
                                 alignment: Alignment.centerLeft,
                                 duration: 600.milliseconds)
                             .slideX(),
-                  ),
-                  600.horizontalSpace,
-                  Expanded(
-                    child: !visible
-                        ? const SizedBox()
-                        : Padding(
-                            padding: EdgeInsets.only(top: 136.h),
-                            child: SelectableText.rich(
+                    // SizedBox(width: 600.w),
+                    SizedBox(
+                      width: 790.w,
+                      child: !visible
+                          ? const SizedBox()
+                          : AutoSizeText.rich(
                               TextSpan(
                                 text: "                                ",
                                 children: const [
@@ -125,16 +124,16 @@ class OurTeamDesktopWidget extends HookConsumerWidget {
                                 ),
                                 mouseCursor: SystemMouseCursors.text,
                               ),
+                              maxLines: 4,
                             ).animate().fadeIn(),
-                          ),
-                  ),
-                  140.horizontalSpace,
-                ],
+                    ),
+                  ],
+                ),
               ),
 
               //, Arrows
               Padding(
-                padding: const EdgeInsets.only(right: 156),
+                padding: EdgeInsets.only(right: 156.w),
                 child: !visible
                     ? SizedBox(height: 15.h)
                     : Row(
@@ -181,10 +180,11 @@ class OurTeamDesktopWidget extends HookConsumerWidget {
         ),
 
         45.verticalSpace,
+
         AnimatedBox(
-          detectedKey: 'OUR TEAM USERS',
+          detectedKey: 'OUR TEAM USERS DEK',
           builder: (con, visible) => AspectRatio(
-            aspectRatio: 1920 / 420,
+            aspectRatio: 1920.w / 420,
             child: !visible
                 ? const SizedBox(height: 15)
                 : ListView.separated(

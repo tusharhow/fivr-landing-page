@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,14 +36,14 @@ class FinanceWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SelectableText(
+            AutoSizeText(
               'Finance',
               style: GoogleFonts.bebasNeue(
                 color: Colors.white,
                 fontSize: getValueForScreenType(
                   context: context,
                   mobile: 60,
-                  tablet: 60,
+                  tablet: 85,
                 ),
                 letterSpacing: .5,
                 height: 1.6,
@@ -55,7 +56,7 @@ class FinanceWidget extends StatelessWidget {
                 tablet: 16,
               ),
             ),
-            SelectableText(
+            AutoSizeText(
               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
               style: GoogleFonts.roboto(
                 color: Colors.white,
@@ -64,6 +65,11 @@ class FinanceWidget extends StatelessWidget {
                   mobile: 18,
                   tablet: 28,
                 ),
+              ),
+              maxLines: getValueForScreenType(
+                context: context,
+                mobile: 4,
+                tablet: 3,
               ),
             ),
             const SizedBox(height: 30),
