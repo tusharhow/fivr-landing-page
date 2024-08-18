@@ -18,7 +18,7 @@ class FocusDesktopWidget extends StatelessWidget {
     final size = MediaQuery.sizeOf(context);
     return SelectionArea(
       child: AspectRatio(
-        aspectRatio: 1920.w / 810.h,
+        aspectRatio: 1920.w / 810,
         child: AnimatedBox(
           detectedKey: "FOCUS",
           builder: (con, visible) => Row(
@@ -55,53 +55,60 @@ class FocusDesktopWidget extends StatelessWidget {
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Padding(
-                                padding: EdgeInsets.only(left: 80.w, top: 18.w),
+                                padding: EdgeInsets.only(left: 80.w, top: 27.h),
                                 child: AutoSizeText(
                                   'Our Focus Areas:',
                                   style: GoogleFonts.bebasNeue(
                                     color: Colors.white,
-                                    fontSize: 80.sp,
+                                    fontSize: 80,
                                     height: 1.8,
                                   ),
+                                  maxLines: 1,
                                 ),
                               ),
                             ),
-                            SizedBox(height: 36.w),
-                            Column(
-                              children: [
-                                buildHoverableFocusArea(
-                                  context,
-                                  'assets/icons/box.svg',
-                                  'Logistics:',
-                                  'Revolutionizing supply chain management with AI-driven analytics and predictive modeling.',
-                                ),
-                                buildDivider(size),
-                                buildHoverableFocusArea(
-                                  context,
-                                  'assets/icons/health.svg',
-                                  'Healthcare:',
-                                  'Empowering providers and patients with telemedicine platforms and personalized care.',
-                                ),
-                                buildDivider(size),
-                                buildHoverableFocusArea(
-                                  context,
-                                  'assets/icons/finance.svg',
-                                  'Finance:',
-                                  'Securing transactions and financial data with blockchain technology and advanced cybersecurity.',
-                                ),
-                                buildDivider(size),
-                                buildHoverableFocusArea(
-                                  context,
-                                  'assets/icons/education.svg',
-                                  'Education:',
-                                  'Shaping the future of learning through immersive educational technologies and e-learning tools.',
-                                ),
-                              ]
-                                  .animate(
-                                    delay: 100.milliseconds,
-                                    interval: 100.milliseconds,
-                                  )
-                                  .flipV(),
+                            SizedBox(height: 48.w),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: 215.w,
+                                right: 135.w,
+                              ),
+                              child: Column(
+                                children: [
+                                  buildHoverableFocusArea(
+                                    context,
+                                    'assets/icons/box.svg',
+                                    'Logistics:',
+                                    'Revolutionizing supply chain management with AI-driven analytics and predictive modeling.',
+                                  ),
+                                  buildDivider(size),
+                                  buildHoverableFocusArea(
+                                    context,
+                                    'assets/icons/health.svg',
+                                    'Healthcare:',
+                                    'Empowering providers and patients with telemedicine platforms and personalized care.',
+                                  ),
+                                  buildDivider(size),
+                                  buildHoverableFocusArea(
+                                    context,
+                                    'assets/icons/finance.svg',
+                                    'Finance:',
+                                    'Securing transactions and financial data with blockchain technology and advanced cybersecurity.',
+                                  ),
+                                  buildDivider(size),
+                                  buildHoverableFocusArea(
+                                    context,
+                                    'assets/icons/education.svg',
+                                    'Education:',
+                                    'Shaping the future of learning through immersive educational technologies and e-learning tools.',
+                                  ),
+                                ]
+                                    .animate(
+                                      delay: 100.milliseconds,
+                                      interval: 100.milliseconds,
+                                    )
+                                    .flipV(),
+                              ),
                             ),
                           ],
                         ),
@@ -118,19 +125,6 @@ class FocusDesktopWidget extends StatelessWidget {
     );
   }
 
-  Widget buildDivider(Size size) {
-    return SizedBox(
-      width: 802.w,
-      child: Divider(
-        color: Colors.white30,
-        thickness: 1,
-        indent: size.width * 0.01,
-        endIndent: size.width * 0.014,
-        height: 20,
-      ),
-    );
-  }
-
   Widget buildHoverableFocusArea(
     BuildContext context,
     String iconPath,
@@ -138,9 +132,8 @@ class FocusDesktopWidget extends StatelessWidget {
     String description,
   ) {
     return HoverableContainer(
-      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
+      padding: EdgeInsets.symmetric(vertical: 10.w, horizontal: 16.w),
       hoverColor: Colors.purple[700],
-      width: 750,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -159,10 +152,11 @@ class FocusDesktopWidget extends StatelessWidget {
                   style: GoogleFonts.bebasNeue(
                     color: Colors.white,
                     fontSize: 35,
-                    height: 1,
+                    // height: 1,
                   ),
+                  maxLines: 1,
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 10.w),
                 AutoSizeText(
                   description,
                   style: GoogleFonts.roboto(
@@ -170,11 +164,25 @@ class FocusDesktopWidget extends StatelessWidget {
                     fontSize: 20,
                     height: 1.5,
                   ),
+                  maxLines: 2,
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget buildDivider(Size size) {
+    return SizedBox(
+      width: 802.w,
+      child: Divider(
+        color: Colors.white30,
+        thickness: 1,
+        indent: size.width * 0.01,
+        endIndent: size.width * 0.014,
+        height: 20,
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fivr_landing_page/app/components/animated_box.dart';
 import 'package:fivr_landing_page/core/theme/app_colors.dart';
 import 'package:fivr_landing_page/core/utils/app_keys.dart';
@@ -29,18 +30,19 @@ class FocusMobileWidget extends StatelessWidget {
                     const SizedBox(height: 70),
                     Padding(
                       padding: const EdgeInsets.only(left: 28),
-                      child: SelectableText(
+                      child: AutoSizeText(
                         'Our Focus Areas:',
                         style: GoogleFonts.bebasNeue(
                           color: Colors.white,
                           fontSize: 60,
                           height: 1.5,
                         ),
+                        maxLines: 1,
                       ),
                     ),
                     const SizedBox(height: 40),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 14),
                       child: Column(
                         children: [
                           buildHoverableFocusArea(
@@ -129,6 +131,7 @@ class FocusMobileWidget extends StatelessWidget {
                     fontSize: 35,
                     height: 1,
                   ),
+                  maxLines: 1,
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -137,6 +140,7 @@ class FocusMobileWidget extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 18,
                   ),
+                  maxLines: 3,
                 ),
               ],
             ),

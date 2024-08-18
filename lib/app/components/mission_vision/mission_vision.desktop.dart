@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fivr_landing_page/core/core.dart';
 import 'package:fivr_landing_page/core/utils/app_keys.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AspectRatio(
-      aspectRatio: 1920 / 800,
+      aspectRatio: 1920.w / 800.h,
       child: AnimatedBox(
         detectedKey: 'Top',
         tigerPoint: 0,
@@ -24,7 +25,7 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
           key: AppKeys.promiseKey,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Flexible(
+            Expanded(
               flex: 2,
               child: !visible
                   ? const SizedBox()
@@ -40,12 +41,10 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
                           ),
                         ),
                       ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 90.w,
-                        vertical: 56.h,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 90.w)
+                          .copyWith(top: 400.w, bottom: 58),
                       alignment: Alignment.bottomCenter,
-                      child: SelectableText.rich(
+                      child: AutoSizeText.rich(
                         const TextSpan(
                           text: '                            ',
                           children: [
@@ -57,11 +56,12 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
                         ),
                         style: GoogleFonts.roboto(
                           color: Colors.white,
-                          fontSize: 35.sp,
+                          fontSize: 35,
                           height: 1.6,
                           fontWeight: FontWeight.w400,
                         ),
                         textAlign: TextAlign.start,
+                        maxLines: 6,
                       ),
                     )
                       .animate(delay: 100.milliseconds)
@@ -78,10 +78,10 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
                       ),
             ),
             hGap(context),
-            Flexible(
+            Expanded(
               child: Column(
                 children: [
-                  Flexible(
+                  Expanded(
                     child: !visible
                         ? const SizedBox()
                         : Container(
@@ -93,7 +93,7 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
                               // ),
                             ),
                             alignment: Alignment.center,
-                            padding: const EdgeInsets.symmetric(horizontal: 56),
+                            padding: EdgeInsets.all(56.w),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -108,24 +108,29 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
                                       color: Colors.white,
                                     ),
                                     20.horizontalSpace,
-                                    SelectableText(
-                                      'Our Mission',
-                                      style: GoogleFonts.bebasNeue(
-                                        color: Colors.white,
-                                        fontSize: 30,
-                                        height: 1.5,
+                                    Expanded(
+                                      child: AutoSizeText(
+                                        'Our Mission',
+                                        style: GoogleFonts.bebasNeue(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                          height: 1.5,
+                                        ),
+                                        maxLines: 1,
                                       ),
                                     ),
                                   ],
                                 ),
-                                (16 * 2).verticalSpace,
-                                SelectableText(
+                                SizedBox(height: 32.w),
+                                AutoSizeText(
                                   "At FivR, our mission is to drive innovation and efficiency across key sectors. We harness cutting-edge technology to solve complex challenges in logistics, healthcare, finance, and education. Our dedicated team works tirelessly to deliver scalable solutions that empower businesses and foster sustainable growth.",
                                   style: GoogleFonts.roboto(
                                     color: Colors.white,
-                                    fontSize: 20.sp,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.w400,
+                                    height: 1.5,
                                   ),
+                                  maxLines: 5,
                                 ),
                               ],
                             ),
@@ -144,13 +149,13 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
                             ),
                   ),
                   vGap(context),
-                  Flexible(
+                  Expanded(
                     child: !visible
                         ? const SizedBox()
                         : Container(
-                            color: AppColors.primroseYellow, // Colors.green,
+                            color: AppColors.primroseYellow,
                             alignment: Alignment.center,
-                            padding: const EdgeInsets.symmetric(horizontal: 56),
+                            padding: EdgeInsets.all(56.w),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -165,24 +170,29 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
                                       color: Colors.black,
                                     ),
                                     20.horizontalSpace,
-                                    SelectableText(
-                                      'Our Vision',
-                                      style: GoogleFonts.bebasNeue(
-                                        color: Colors.black,
-                                        fontSize: 30,
-                                        height: 1.5,
+                                    Expanded(
+                                      child: AutoSizeText(
+                                        'Our Vision',
+                                        style: GoogleFonts.bebasNeue(
+                                          color: Colors.black,
+                                          fontSize: 30,
+                                          height: 1.5,
+                                        ),
+                                        maxLines: 1,
                                       ),
                                     ),
                                   ],
                                 ),
-                                (16 * 2).verticalSpace,
-                                SelectableText(
+                                SizedBox(height: 32.w),
+                                AutoSizeText(
                                   "Our vision is to be the cornerstone of technological advancement, shaping the future of industry and commerce. We aim to create a world where seamless integration of technology solutions makes life easier, healthier, and more prosperous for all. ",
                                   style: GoogleFonts.roboto(
                                     color: Colors.black,
-                                    fontSize: 20.sp,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.w400,
+                                    height: 1.5,
                                   ),
+                                  maxLines: 4,
                                 ),
                               ],
                             ),
@@ -199,7 +209,7 @@ class MissionVisionDesktopWidget extends HookConsumerWidget {
                               begin: .9,
                               alignment: Alignment.center,
                             ),
-                  ),
+                  )
                 ],
               ),
             ),

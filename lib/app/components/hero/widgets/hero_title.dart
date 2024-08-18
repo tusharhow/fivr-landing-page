@@ -18,12 +18,22 @@ class HeroTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = GoogleFonts.bebasNeue(
+      fontSize: getValueForScreenType(
+        context: context,
+        desktop: 120,
+        tablet: 86,
+        mobile: 65,
+      ),
+      color: Colors.white,
+      height: 1,
+    );
     return show
         ? Padding(
             padding: getValueForScreenType(
               context: context,
               desktop: EdgeInsets.only(left: 74.w, right: 500.w),
-              tablet: const EdgeInsets.only(left: 40, right: 84),
+              tablet: const EdgeInsets.only(left: 40, right: 120),
               mobile: const EdgeInsets.only(left: 32, right: 28),
             ),
             child: AutoSizeText.rich(
@@ -44,40 +54,22 @@ class HeroTitle extends StatelessWidget {
                 tablet: 3,
                 desktop: 2,
               ),
-              style: GoogleFonts.bebasNeue(
-                fontSize: getValueForScreenType(
-                  context: context,
-                  desktop: 120,
-                  tablet: 120,
-                  mobile: 65,
-                ),
-                color: Colors.white,
-                height: 1,
-              ),
+              style: textStyle,
             ),
           ).animate().fadeIn()
         : Container(
             margin: getValueForScreenType(
               context: context,
               desktop: EdgeInsets.only(left: 74.w, right: 500.w),
-              tablet: const EdgeInsets.only(left: 40, right: 84),
+              tablet: const EdgeInsets.only(left: 40, right: 120),
               mobile: const EdgeInsets.only(left: 32, right: 28),
             ),
             height: (title1 + title2).height(
-              style: GoogleFonts.bebasNeue(
-                fontSize: getValueForScreenType(
-                  context: context,
-                  desktop: 120,
-                  tablet: 120,
-                  mobile: 65,
-                ),
-                color: Colors.white,
-                height: 1,
-              ),
+              style: textStyle,
               maxLines: getValueForScreenType(
                 context: context,
                 mobile: 3,
-                tablet: 3,
+                tablet: 2,
                 desktop: 2,
               ),
               maxWidth: getValueForScreenType(

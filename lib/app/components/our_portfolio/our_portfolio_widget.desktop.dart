@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fivr_landing_page/app/components/animated_box.dart';
 import 'package:fivr_landing_page/core/core.dart';
 import 'package:fivr_landing_page/core/utils/app_keys.dart';
@@ -14,6 +15,7 @@ class OurPortfolioDesktopWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
+      key: AppKeys.portfolioKey,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
@@ -23,11 +25,10 @@ class OurPortfolioDesktopWidget extends HookConsumerWidget {
           ),
           child: Align(
             alignment: Alignment.topLeft,
-            child: SelectableText(
+            child: AutoSizeText(
               'Our portfolio',
-              key: AppKeys.portfolioKey,
-              style:
-                  GoogleFonts.bebasNeue(fontSize: 80.sp, color: Colors.white),
+              style: GoogleFonts.bebasNeue(fontSize: 80, color: Colors.white),
+              maxLines: 1,
             ),
           ),
         ),
@@ -61,7 +62,7 @@ class _PortfolioWidget extends HookConsumerWidget {
         //. 1st row
         AspectRatio(
           // height: MediaQuery.of(context).size.height * 0.6,
-          aspectRatio: 1920 / 700,
+          aspectRatio: 1920.w / 810.w,
           child: AnimatedBox(
             detectedKey: 'PORTFOLIO TOP',
             builder: (con, visible) => Row(
@@ -101,30 +102,32 @@ class _PortfolioWidget extends HookConsumerWidget {
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 48.w),
-                                  child: SelectableText(
+                                  child: AutoSizeText(
                                     'Technology',
                                     style: GoogleFonts.bebasNeue(
                                       color: Colors.white,
-                                      fontSize: 35.sp,
+                                      fontSize: 35,
                                       height: 1.4,
                                       letterSpacing: .5,
                                     ),
+                                    maxLines: 1,
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
                                   left: 48.w,
-                                  bottom: 36.h,
+                                  bottom: 36.w,
                                   right: 56.w,
                                   top: 10.w,
                                 ),
-                                child: SelectableText(
-                                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                child: AutoSizeText(
+                                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                                   style: GoogleFonts.roboto(
                                     color: Colors.white,
-                                    fontSize: 20.sp,
+                                    fontSize: 20,
                                   ),
+                                  maxLines: 4,
                                 ),
                               ),
                             ],
@@ -157,7 +160,7 @@ class _PortfolioWidget extends HookConsumerWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SelectableText(
+                                    AutoSizeText(
                                       'Technology',
                                       style: GoogleFonts.bebasNeue(
                                         fontSize: 80.sp,
@@ -181,8 +184,8 @@ class _PortfolioWidget extends HookConsumerWidget {
                                   bottom: 28.h,
                                   right: 58.w,
                                 ),
-                                child: SelectableText(
-                                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                child: AutoSizeText(
+                                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                                   style: TextStyle(
                                     fontSize: 30.sp,
                                   ),
@@ -205,7 +208,7 @@ class _PortfolioWidget extends HookConsumerWidget {
         //. 2nd row
         AspectRatio(
           // height: MediaQuery.of(context).size.height * 0.7,
-          aspectRatio: 1920 / 700,
+          aspectRatio: 1920.w / 810.w,
           child: AnimatedBox(
             detectedKey: "Portfolio mid",
             builder: (con, visible) => Row(
@@ -243,12 +246,13 @@ class _PortfolioWidget extends HookConsumerWidget {
                                 ),
                               ),
                               16.verticalSpace,
-                              SelectableText(
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                              AutoSizeText(
+                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the ",
                                 style: GoogleFonts.roboto(
                                   color: Colors.white,
-                                  fontSize: 20.sp,
+                                  fontSize: 20,
                                 ),
+                                maxLines: 2,
                               ),
                               82.verticalSpace,
                             ],
@@ -274,7 +278,7 @@ class _PortfolioWidget extends HookConsumerWidget {
                     children: [
                       !visible
                           ? const SizedBox()
-                          : Expanded(
+                          : Flexible(
                               child: Container(
                                 decoration: const BoxDecoration(
                                   color: AppColors
@@ -286,38 +290,60 @@ class _PortfolioWidget extends HookConsumerWidget {
                                     fit: BoxFit.fill,
                                   ),
                                 ),
-                                padding:
-                                    EdgeInsets.all(38.w).copyWith(bottom: 20.h),
+                                padding: EdgeInsets.only(
+                                  top: 48.w,
+                                  left: 48.w,
+                                  right: 48.w,
+                                  bottom: 22.w,
+                                ),
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
                                       alignment: Alignment.topRight,
                                       child: SvgPicture.asset(
                                         'vectors/pixijs.svg',
-                                        height: 42.h,
+                                        height: 42.w,
                                       ),
                                     ),
-                                    32.verticalSpace,
-                                    SelectableText(
-                                      'Technology',
-                                      style: GoogleFonts.bebasNeue(
-                                        color: Colors.white,
-                                        fontSize: 35.sp,
-                                        letterSpacing: .5,
-                                        height: 1.6,
-                                      ),
-                                    ),
-                                    19.verticalSpace,
-                                    SelectableText(
-                                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                                      style: GoogleFonts.roboto(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 20.sp,
-                                        height: 1.5,
-                                      ),
+                                    // SizedBox(height: 32.w),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        AutoSizeText(
+                                          'Technology',
+                                          style: GoogleFonts.bebasNeue(
+                                            color: Colors.white,
+                                            fontSize: 35,
+                                            letterSpacing: .5,
+                                            height: 1.6,
+                                          ),
+                                          maxLines: 1,
+                                        ),
+                                        SizedBox(height: 14.w),
+                                        SizedBox(
+                                          width: double.maxFinite,
+                                          child: AutoSizeText(
+                                            "Our dedicated team works tirelessly to deliver scalable solutions that empower businesses and foster sustainable growth.",
+                                            style: GoogleFonts.roboto(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 20,
+                                              height: 1.5,
+                                            ),
+                                            maxLines: 2,
+                                            maxFontSize: 20,
+                                            minFontSize: 8,
+                                            // softWrap: true,
+                                            overflow: TextOverflow.visible,
+                                            wrapWords: true,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -335,54 +361,50 @@ class _PortfolioWidget extends HookConsumerWidget {
                                     alignment: Alignment.center,
                                   ),
                             ),
-                      20.verticalSpace,
+                      vGap(context),
                       !visible
                           ? const SizedBox()
-                          : Expanded(
+                          : Flexible(
                               child: Container(
-                                color: AppColors
-                                    .purpleHeather, // const Color(0xff3B0D3C),
-
-                                padding:
-                                    EdgeInsets.all(38.w).copyWith(bottom: 20.h),
+                                color: AppColors.purpleHeather,
+                                padding: EdgeInsets.all(48.w),
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
                                       alignment: Alignment.topRight,
                                       child: SvgPicture.asset(
                                         'vectors/pixijs.svg',
-                                        height: 42.h,
+                                        height: 42.w,
                                         color: Colors.black,
                                       ),
                                     ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Align(
-                                          alignment: Alignment.topLeft,
-                                          child: SelectableText(
-                                            'Technology',
-                                            style: GoogleFonts.bebasNeue(
-                                              fontSize: 35.sp,
-                                              letterSpacing: .5,
-                                              height: 1.6,
-                                            ),
-                                          ),
-                                        ),
-                                        10.verticalSpace,
-                                        SelectableText(
-                                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                                          style: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 20.sp,
-                                            height: 1.5,
-                                          ),
-                                        ),
-                                      ],
+                                    AutoSizeText(
+                                      'Technology',
+                                      style: GoogleFonts.bebasNeue(
+                                        fontSize: 35,
+                                        letterSpacing: .5,
+                                        height: 1.2,
+                                      ),
+                                      maxLines: 1,
+                                    ),
+                                    // SizedBox(height: 10.w),
+                                    AutoSizeText(
+                                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                      style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 20,
+                                        height: 1.5,
+                                      ),
+                                      maxLines: 4,
+                                      maxFontSize: 20,
+                                      minFontSize: 0,
+                                      wrapWords: true,
+                                      softWrap: true,
+                                      overflow: TextOverflow.visible,
                                     ),
                                   ],
                                 ),
@@ -407,7 +429,7 @@ class _PortfolioWidget extends HookConsumerWidget {
             ),
           ),
         ),
-        20.verticalSpace,
+        vGap(context),
 
         //. 3rd row
         AspectRatio(

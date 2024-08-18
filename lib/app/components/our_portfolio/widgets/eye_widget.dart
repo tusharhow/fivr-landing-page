@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fivr_landing_page/app/components/technology_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -74,7 +75,7 @@ class EyeWidget extends StatelessWidget {
                 top: 10,
               ),
             ),
-            child: Text(
+            child: AutoSizeText(
               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
               style: GoogleFonts.roboto(
                 color: Colors.white,
@@ -84,6 +85,12 @@ class EyeWidget extends StatelessWidget {
                   tablet: 20,
                 ),
               ),
+              maxFontSize: getValueForScreenType(
+                context: context,
+                mobile: 18,
+                tablet: 20,
+              ),
+              minFontSize: 6,
             ),
           ),
         ],

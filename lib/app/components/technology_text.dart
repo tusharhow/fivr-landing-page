@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,7 +14,7 @@ class TechnologyText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SelectableText(
+    return AutoSizeText(
       'Technology',
       style: GoogleFonts.bebasNeue(
         fontSize: fontSize ?? 60,
@@ -21,6 +22,7 @@ class TechnologyText extends StatelessWidget {
         color: textColor,
         height: 1.4,
       ),
+      maxLines: 1,
     );
   }
 }

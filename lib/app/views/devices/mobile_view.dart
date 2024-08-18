@@ -1,18 +1,15 @@
-import 'dart:developer';
-
-import 'package:fivr_landing_page/app/components/common_gradient_bg.dart';
 import 'package:fivr_landing_page/app/components/footer/footer_widget.mobile.tablet.dart';
 import 'package:fivr_landing_page/app/components/hero/hero_section.mobile.dart';
+import 'package:fivr_landing_page/core/utils/app_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/core.dart';
-import '../../../core/utils/app_keys.dart';
 import '../../application/provider.dart';
+import '../../components/common_gradient_bg.dart';
 import '../../components/focus/focus_widget.mobile.dart';
-import '../../components/hero/vertical_menu.mobile.dart';
 import '../../components/join_us/join_us_widget.mobile.tablet.dart';
 import '../../components/mission_vision/mission_vision.mobile.dart';
 import '../../components/our_portfolio/our_portfolio_widget.mobile.tablet.dart';
@@ -43,6 +40,7 @@ class MobileView extends HookConsumerWidget {
     return Scaffold(
       key: scaffoldKey,
       body: ListView(
+        key: AppKeys.listViewKey,
         controller: mobileScrollCOntroller,
         children: [
           const HeroSectionMobile(),
@@ -92,8 +90,6 @@ class MobileView extends HookConsumerWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
     );
   }
-
-  
 }
 
 extension SliverX on Widget {

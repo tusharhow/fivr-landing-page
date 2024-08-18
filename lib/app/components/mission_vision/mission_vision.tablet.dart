@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fivr_landing_page/app/components/animated_box.dart';
 import 'package:fivr_landing_page/core/utils/app_keys.dart';
 import 'package:flutter/material.dart';
@@ -21,15 +22,14 @@ class MissionVisionTabletWidget extends HookConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(
+        AspectRatio(
           key: AppKeys.promiseKey,
-          height: 392,
+          aspectRatio: 1.sw / 701,
           child: AnimatedBox(
-            detectedKey: 'TOP-1',
+            detectedKey: 'MISSION-TAB-1',
             builder: (con, visible) => !visible
                 ? const SizedBox.shrink()
                 : Container(
-                    height: 580,
                     decoration: BoxDecoration(
                       color: AppColors.vibrantOrange,
                       image: DecorationImage(
@@ -41,9 +41,12 @@ class MissionVisionTabletWidget extends HookConsumerWidget {
                         ),
                       ),
                     ),
-                    padding: const EdgeInsets.all(24),
+                    padding: EdgeInsets.symmetric(horizontal: 56.w).copyWith(
+                      top: 175.w,
+                      bottom: 75,
+                    ),
                     alignment: Alignment.bottomCenter,
-                    child: Text.rich(
+                    child: AutoSizeText.rich(
                       const TextSpan(
                         text: '                     ',
                         children: [
@@ -55,12 +58,13 @@ class MissionVisionTabletWidget extends HookConsumerWidget {
                       ),
                       style: GoogleFonts.roboto(
                         color: Colors.white,
-                        fontSize: 24,
-                        height: 1.4,
+                        fontSize: 28,
+                        height: 1.6,
                         fontWeight: FontWeight.w400,
                         textBaseline: TextBaseline.alphabetic,
                       ),
                       textAlign: TextAlign.start,
+                      // maxLines: 6,
                     ),
                   )
                     .animate()
@@ -78,14 +82,13 @@ class MissionVisionTabletWidget extends HookConsumerWidget {
           ),
         ),
         vGap(context),
-        SizedBox(
-          height: 392,
+        AspectRatio(
+          aspectRatio: 1.sw / 478,
           child: AnimatedBox(
-            detectedKey: 'TOP-2',
+            detectedKey: 'MISSION-TAB-2',
             builder: (con, visible) => !visible
                 ? const SizedBox.shrink()
                 : Container(
-                    height: 392,
                     decoration: const BoxDecoration(
                       color: AppColors.cattleyaOrchid,
                       // image: DecorationImage(
@@ -105,7 +108,7 @@ class MissionVisionTabletWidget extends HookConsumerWidget {
                           children: [
                             const SquareBox(color: Colors.white),
                             const SizedBox(width: 22),
-                            Text(
+                            AutoSizeText(
                               'Our Mission',
                               style: GoogleFonts.bebasNeue(
                                 color: Colors.white,
@@ -115,14 +118,15 @@ class MissionVisionTabletWidget extends HookConsumerWidget {
                             ),
                           ],
                         ),
-                        (16 * 2).verticalSpace,
-                        Text(
+                        SizedBox(height: 32.w),
+                        AutoSizeText(
                           "At FivR, our mission is to drive innovation and efficiency across key sectors. We harness cutting-edge technology to solve complex challenges in logistics, healthcare, finance, and education. Our dedicated team works tirelessly to deliver scalable solutions that empower businesses and foster sustainable growth.",
                           style: GoogleFonts.roboto(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: 20,
                             fontWeight: FontWeight.w400,
                           ),
+                          // maxLines: 5,
                         ),
                       ],
                     ),
@@ -142,62 +146,62 @@ class MissionVisionTabletWidget extends HookConsumerWidget {
           ),
         ),
         vGap(context),
-        SizedBox(
-          height: 392,
+        AspectRatio(
+          aspectRatio: 1.sw / 478,
           child: AnimatedBox(
-              detectedKey: 'TOP-3',
-              builder: (con, visible) {
-                return !visible
-                    ? const SizedBox.shrink()
-                    : Container(
-                        color: AppColors.primroseYellow, // Colors.green,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.all(40).copyWith(bottom: 66),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
+            detectedKey: 'MISSION-TAB-3',
+            builder: (con, visible) => !visible
+                ? const SizedBox.shrink()
+                : Container(
+                    color: AppColors.primroseYellow, // Colors.green,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(40).copyWith(bottom: 66),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const SquareBox(color: Colors.black),
-                                const SizedBox(width: 22),
-                                Text(
-                                  'Our Vision',
-                                  style: GoogleFonts.bebasNeue(
-                                    color: Colors.black,
-                                    fontSize: 30,
-                                    height: 1.5,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            (16 * 2).verticalSpace,
-                            Text(
-                              "Our vision is to be the cornerstone of technological advancement, shaping the future of industry and commerce. We aim to create a world where seamless integration of technology solutions makes life easier, healthier, and more prosperous for all. ",
-                              style: GoogleFonts.roboto(
+                            const SquareBox(color: Colors.black),
+                            const SizedBox(width: 22),
+                            AutoSizeText(
+                              'Our Vision',
+                              style: GoogleFonts.bebasNeue(
                                 color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
+                                fontSize: 30,
+                                height: 1.5,
                               ),
                             ),
                           ],
                         ),
-                      )
-                        .animate()
-                        .fadeIn()
-                        .flipH(
-                          begin: -0.1,
-                          end: 0,
-                          alignment: Alignment.center,
-                          duration: 100.milliseconds,
-                        )
-                        .scaleY(
-                          begin: .9,
-                          alignment: Alignment.center,
-                        );
-              }),
+                        SizedBox(height: 32.w),
+                        AutoSizeText(
+                          "Our vision is to be the cornerstone of technological advancement, shaping the future of industry and commerce. We aim to create a world where seamless integration of technology solutions makes life easier, healthier, and more prosperous for all. ",
+                          style: GoogleFonts.roboto(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          // maxLines: 4,
+                        ),
+                      ],
+                    ),
+                  )
+                    .animate()
+                    .fadeIn()
+                    .flipH(
+                      begin: -0.1,
+                      end: 0,
+                      alignment: Alignment.center,
+                      duration: 100.milliseconds,
+                    )
+                    .scaleY(
+                      begin: .9,
+                      alignment: Alignment.center,
+                    ),
+          ),
         ),
       ],
     );

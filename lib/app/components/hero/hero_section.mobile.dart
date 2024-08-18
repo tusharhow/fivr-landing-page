@@ -226,8 +226,11 @@ void showFullWidthMenu(
 
   showMenu(
     context: context,
-    position: const RelativeRect.fromLTRB(0, 0, 0, 00),
-    constraints: BoxConstraints(minWidth: 1.sw),
+    position: RelativeRect.fromSize(context.findRenderObject()!.semanticBounds,
+        context.findRenderObject()!.semanticBounds.size),
+    constraints: BoxConstraints(
+      minWidth: context.findRenderObject()?.semanticBounds.size.width ?? 0,
+    ),
     color: Colors.black,
     items: [
       PopupMenuItem(
@@ -305,11 +308,23 @@ void showFullWidthMenu(
         ),
         onTap: () async {
           try {
-            await mobileScrollCOntroller.position.ensureVisible(
-              AppKeys.portfolioKey.currentContext
-                  ?.findAncestorRenderObjectOfType() as RenderObject,
+            // await mobileScrollCOntroller.position.ensureVisible(
+            //   AppKeys.portfolioKey.currentContext
+            //       ?.findAncestorRenderObjectOfType() as RenderObject,
+            //   duration: 600.milliseconds,
+            //   curve: Curves.fastEaseInToSlowEaseOut,
+            // );
+
+            final listbox = AppKeys.listViewKey.currentContext
+                ?.findRenderObject() as RenderBox;
+            final box = AppKeys.portfolioKey.currentContext?.findRenderObject()
+                as RenderBox;
+            final offset = box.localToGlobal(Offset.zero, ancestor: listbox);
+
+            mobileScrollCOntroller.animateTo(
+              offset.dy,
               duration: 600.milliseconds,
-              curve: Curves.fastEaseInToSlowEaseOut,
+              curve: Curves.easeIn,
             );
           } on Exception catch (e, st) {
             log("message", error: e, stackTrace: st);

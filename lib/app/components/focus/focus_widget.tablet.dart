@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fivr_landing_page/app/components/animated_box.dart';
 import 'package:fivr_landing_page/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class FocusTabletWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return SizedBox(
-      height: 860,
+      height: 800,
       key: AppKeys.focusKey,
       child: AnimatedBox(
         detectedKey: "FOCUS",
@@ -27,9 +28,8 @@ class FocusTabletWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    const SizedBox(height: 42),
                     Padding(
-                      padding: const EdgeInsets.only(left: 40),
+                      padding: const EdgeInsets.only(top: 48, left: 40),
                       child: SelectableText(
                         'Our Focus Areas:',
                         style: GoogleFonts.bebasNeue(
@@ -39,9 +39,9 @@ class FocusTabletWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 44),
                     Padding(
-                      padding: const EdgeInsets.only(left: 80, right: 40),
+                      padding:
+                          const EdgeInsets.only(top: 44, left: 80, right: 40),
                       child: Column(
                         children: [
                           buildHoverableFocusArea(
@@ -122,21 +122,23 @@ class FocusTabletWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                AutoSizeText(
                   title,
                   style: GoogleFonts.bebasNeue(
                     color: Colors.white,
                     fontSize: 35,
                     height: 1,
                   ),
+                  maxLines: 1,
                 ),
                 const SizedBox(height: 12),
-                Text(
+                AutoSizeText(
                   description,
                   style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontSize: 20,
                   ),
+                  maxLines: 2,
                 ),
               ],
             ),

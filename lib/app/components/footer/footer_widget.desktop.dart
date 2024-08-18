@@ -13,7 +13,7 @@ class FooterWidgetDesktop extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AspectRatio(
-      aspectRatio: 1920 / 467,
+      aspectRatio: 1920.w / 467,
       child: AnimatedBox(
         detectedKey: "FOOTER",
         builder: (con, visible) => !visible
@@ -34,6 +34,7 @@ class FooterWidgetDesktop extends HookConsumerWidget {
                             const FooterTitles(),
                             46.verticalSpace,
                             const FooterIcons(),
+                            SizedBox(height: 120.w),
                             const FooterDisclaimer(),
                           ],
                         ),

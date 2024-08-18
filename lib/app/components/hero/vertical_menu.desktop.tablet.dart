@@ -17,10 +17,8 @@ final selectedMenuProvider = StateProvider<int?>((ref) {
 class VerticalTextMenuDesktopTablet extends HookConsumerWidget {
   const VerticalTextMenuDesktopTablet({
     super.key,
-    required this.rowKey,
   });
 
-  final GlobalKey rowKey;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,7 +39,7 @@ class VerticalTextMenuDesktopTablet extends HookConsumerWidget {
         tablet: 85,
         mobile: 120,
       ),
-      height: double.infinity,
+      // height: double.infinity,
       // padding: const EdgeInsets.symmetric(vertical: 116),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
